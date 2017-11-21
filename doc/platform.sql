@@ -107,7 +107,7 @@ CREATE TABLE `sys_domain` (
 -- ----------------------------
 -- Records of sys_domain
 -- ----------------------------
-INSERT INTO `sys_domain` VALUES ('1r4egj4584gf4a911a66761d6g73918d', 'shop', '超市管理系统', '', '1', '', '2017-11-20 11:34:54', '', '2017-11-20 11:35:04', '鲜风生活综合管理平台', 'ivu-icon ivu-icon-android-cart');
+INSERT INTO `sys_domain` VALUES ('1r4egj4584gf4a911a66761d6g73918d', 'shop', '超市管理系统', '', '1', '', '2017-11-20 11:34:54', '', '2017-11-20 11:35:04', '超市管理系统', 'ivu-icon ivu-icon-android-cart');
 INSERT INTO `sys_domain` VALUES ('735e3dd6bb4f4a9191a66761d6g73918', 'platform', '综合管理平台', '', '1', '', '2017-11-20 11:34:54', '', '2017-11-20 11:35:04', '综合管理平台', 'ivu-icon ivu-icon-android-contacts');
 
 -- ----------------------------
