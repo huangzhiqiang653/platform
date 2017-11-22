@@ -3,6 +3,7 @@
     技术选型
     1、后端使用技术
         springframework4.3.7.RELEASE
+        EhCache2.10.2
         mybatis3.4.1
         shiro1.3.2
         servlet3.1.0
@@ -69,4 +70,3 @@
     git：https://gitee.com/feixiangni/platform
     如需获取项目最新源码，请Watch、Star项目，同时也是对项目最好的支持
     
-    想使用商城功能的请点击https://gitee.com/fuyang_lipengjun/platform

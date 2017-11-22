@@ -21,6 +21,7 @@
         <qcloud-cos-version>4.4</qcloud-cos-version>
         <jackson.version>2.5.0</jackson.version>
         <poi.version>3.15</poi.version>
+        <ehcache.version>2.10.2</ehcache.version>
     </properties>
 
     <dependencies>
@@ -83,6 +84,7 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
         <!-- POI依赖 ，处理EXCEL WORD  PDF-->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -121,6 +123,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- POI依赖 ，处理EXCEL WORD  PDF-->
+        <!-- POI依赖 ，处理EXCEL WORD  PDF -->
+
+        <!-- EhCache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.2</version>
+        </dependency>
+        <!-- EhCache -->
     </dependencies>
 </project>
