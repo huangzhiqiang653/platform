@@ -225,7 +225,7 @@
             <div class="form-group">
                 <div class="form-group">
                     <div class="col-sm-2 control-label">账号</div>
-                    <span class="label label-success" style="vertical-align: bottom;">{{user.username}}</span>
+                    <span class="label label-success" style="vertical-align: bottom;">{{user.userName}}</span>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 control-label">原密码</div>
@@ -292,13 +292,21 @@
         },
         methods: {
             getMenuList: function (event) {
-                $.getJSON("sys/menu/user?_" + $.now(), function (r) {
-                    vm.menuList = r.menuList;
+                Ajax.request({
+                    url: 'sys/menu/user',
+                    async: true,
+                    successCallback: function (data) {
+                        vm.menuList = data.menuList;
+                    }
                 });
             },
             getUser: function () {
-                $.getJSON("sys/user/info?_" + $.now(), function (r) {
-                    vm.user = r.user;
+                Ajax.request({
+                    url: 'sys/user/info',
+                    async: true,
+                    successCallback: function (data) {
+                        vm.user = data.user;
+                    }
                 });
             },
             updatePassword: function () {
@@ -308,18 +316,15 @@
                     content: jQuery("#passwordLayer"),
                     btn: ['修改', '取消'],
                     btn1: function (index) {
-                        var data = "password=" + vm.password + "&newPassword=" + vm.newPassword;
-                        $.ajax({
-                            type: "POST",
-                            url: "sys/user/password",
-                            data: data,
-                            dataType: "json",
-                            success: function (result) {
+                        Ajax.request({
+                            url: 'sys/user/password',
+                            params: {'password': vm.password, 'newPassword': vm.newPassword},
+                            type: 'POST',
+                            successCallback: function (result) {
                                 if (result.code == 0) {
-                                    layer.close(index);
-                                    layer.alert('修改成功', function (index) {
+                                    setTimeout(function () {
                                         location.reload();
-                                    });
+                                    }, 1000);
                                 } else {
                                     layer.alert(result.msg);
                                 }
@@ -359,13 +364,23 @@
             changeSystem: function (domainId, domainName) {
                 vm.domainName = domainName;
 
-                $.getJSON("sys/menu/user?domainId=" + domainId, function (r) {
-                    vm.menuList = r.menuList;
+                Ajax.request({
+                    url: 'sys/menu/user',
+                    params: {'domainId': domainId},
+                    async: true,
+                    successCallback: function (data) {
+                        vm.menuList = data.menuList;
+                    }
                 });
             },
             getDomains: function () {
-                $.getJSON("sys/domain/queryAll?domainStatus=1", function (r) {
-                    vm.domainList = r.list;
+                Ajax.request({
+                    url: 'sys/domain/queryAll',
+                    params: {'domainStatus': 1},
+                    async: true,
+                    successCallback: function (data) {
+                        vm.domainList = data.list;
+                    }
                 });
             },
             love: function () {

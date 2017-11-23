@@ -46,9 +46,9 @@ public class RRExceptionHandler {
     @ExceptionHandler(Exception.class)
     public R handleException(Exception e) {
         logger.error(e.getMessage(), e);
-        return R.error();
+        String msg = generateMessage(e);
+        return R.error(msg);
     }
-
 
     @ExceptionHandler(ApiRRException.class)
     public Object handleApiRRException(ApiRRException e) {
@@ -56,5 +56,35 @@ public class RRExceptionHandler {
         result.put("errno", e.getErrno());
         result.put("errmsg", e.getErrmsg());
         return result;
+    }
+
+    /**
+     * 主要功能: 根据异常生成Log日志信息 注意事项:无
+     *
+     * @param exception 异常信息
+     * @return String 日志信息
+     */
+    private String generateMessage(Exception exception) {
+        // 记录详细日志到LOG文件
+        String message = "";
+        for (StackTraceElement stackTraceElement : exception.getStackTrace()) {
+
+            if (stackTraceElement.toString().startsWith("com.platform")) {
+                message += "类名：" + stackTraceElement.getFileName() + ";方法："
+                        + stackTraceElement.getMethodName() + ";行号："
+                        + stackTraceElement.getLineNumber() + ";异常信息:"
+                        + exception.getMessage();
+                break;
+            }
+            if (stackTraceElement.toString().startsWith("org.springframework.web.method.annotation")) {
+                message += "类名：" + stackTraceElement.getFileName() + ";方法："
+                        + stackTraceElement.getMethodName() + ";行号："
+                        + stackTraceElement.getLineNumber() + ";异常信息:"
+                        + exception.getMessage();
+                break;
+            }
+        }
+        exception.printStackTrace();
+        return message;
     }
 }

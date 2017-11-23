@@ -91,7 +91,7 @@ public class SysUserController extends AbstractController {
         //退出
         ShiroUtils.logout();
 
-        return R.ok();
+        return R.ok("密码修改成功");
     }
 
     /**
