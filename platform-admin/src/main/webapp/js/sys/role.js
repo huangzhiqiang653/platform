@@ -269,6 +269,12 @@ var vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
+        reloadSearch: function() {
+            vm.q = {
+                roleName: ''
+            }
+            vm.reload();
+        },
         handleSubmit: function (name) {
             handleSubmitValidate(this, name, function () {
                 vm.saveOrUpdate()

@@ -82,6 +82,10 @@ public class SysUserController extends AbstractController {
         //sha256加密
         newPassword = new Sha256Hash(newPassword).toHex();
 
+        if (password.equals(newPassword)) {
+            return R.error("密码不能与原密码相同");
+        }
+
         //更新密码
         int count = sysUserService.updatePassword(getUserId(), password, newPassword);
         if (count == 0) {

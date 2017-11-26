@@ -188,6 +188,12 @@ var vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
+        reloadSearch: function() {
+            vm.q = {
+                userName: ''
+            }
+            vm.reload();
+        },
         deptTree: function () {
             openWindow({
                 title: "选择部门",
