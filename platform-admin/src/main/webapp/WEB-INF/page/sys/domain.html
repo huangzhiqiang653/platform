@@ -38,8 +38,15 @@
             <Form-item label="域地址" prop="domainUrl">
                 <i-input v-model="domain.domainUrl" placeholder="域地址"/>
             </Form-item>
-            <Form-item label="状态  0：无效   1：有效" prop="domainStatus">
-                <i-input v-model="domain.domainStatus" placeholder="状态  0：无效   1：有效"/>
+            <Form-item label="状态" prop="domainStatus">
+                <Radio-group v-model="domain.domainStatus">
+                    <Radio label="0">
+                        <span>无效</span>
+                    </Radio>
+                    <Radio label="1">
+                        <span>有效</span>
+                    </Radio>
+                </Radio-group>
             </Form-item>
             <Form-item label="备注" prop="remark">
                 <i-input v-model="domain.remark" placeholder="备注"/>

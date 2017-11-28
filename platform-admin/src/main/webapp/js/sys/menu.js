@@ -72,9 +72,9 @@ TreeGrid.initColumn = function () {
             title: '状态', field: 'status', align: 'center', valign: 'middle', width: '80px',
             formatter: function (item) {
                 if (item.status === 1) {
-                    return '<span class="label label-danger">无效</span>';
+                    return '<span class="label label-success">有效</span>';
                 }
-                return '<span class="label label-success">有效</span>';
+                return '<span class="label label-danger">无效</span>';
             }
         },
         {title: '所属域', field: 'domainName', align: 'center', valign: 'middle'}];
@@ -106,7 +106,7 @@ var vm = new Vue({
             parentId: 0,
             type: 1,
             orderNum: 0,
-            status: 0
+            status: 1
         },
         q: {
             menuName: '',
@@ -136,24 +136,35 @@ var vm = new Vue({
             });
         },
         getDomains: function () {
-            $.getJSON("../sys/domain/queryAll?domainStatus=1", function (r) {
-                vm.domainList = r.list;
+            Ajax.request({
+                url: '../sys/domain/queryAll',
+                params: {
+                    'domainStatus': 1
+                },
+                async: true,
+                successCallback: function (r) {
+                    vm.domainList = r.list;
+                }
             });
         },
         getMenu: function (menuId) {
             //加载菜单树
-            $.get("../sys/menu/select", function (r) {
-                ztree = $.fn.zTree.init($("#menuTree"), setting, r.menuList);
-                var node = ztree.getNodeByParam("menuId", vm.menu.parentId);
-                if (node) {
-                    ztree.selectNode(node);
-                    vm.menu.parentName = node.name;
-                } else {
-                    node = ztree.getNodeByParam("menuId", 0);
-                    ztree.selectNode(node);
-                    vm.menu.parentName = node.name;
+            Ajax.request({
+                url: "../sys/menu/select",
+                async: true,
+                successCallback: function (r) {
+                    ztree = $.fn.zTree.init($("#menuTree"), setting, r.menuList);
+                    var node = ztree.getNodeByParam("menuId", vm.menu.parentId);
+                    if (node) {
+                        ztree.selectNode(node);
+                        vm.menu.parentName = node.name;
+                    } else {
+                        node = ztree.getNodeByParam("menuId", 0);
+                        ztree.selectNode(node);
+                        vm.menu.parentName = node.name;
+                    }
                 }
-            })
+            });
         },
         add: function () {
             vm.showList = false;
@@ -163,7 +174,7 @@ var vm = new Vue({
             if (menuId.length != 0) {
                 parentId = menuId[0].id;
             }
-            vm.menu = {parentName: null, parentId: parentId, type: 1, orderNum: 0, status: 0};
+            vm.menu = {parentName: null, parentId: parentId, type: 1, orderNum: 0, status: 1};
             vm.getMenu();
             vm.getDomains();
         },
@@ -174,13 +185,17 @@ var vm = new Vue({
                 return;
             }
 
-            $.get("../sys/menu/info/" + menuId[0].id, function (r) {
-                vm.showList = false;
-                vm.title = "修改";
-                vm.menu = r.menu;
+            Ajax.request({
+                url: "../sys/menu/info/" + menuId[0].id,
+                async: true,
+                successCallback: function (r) {
+                    vm.showList = false;
+                    vm.title = "修改";
+                    vm.menu = r.menu;
 
-                vm.getDomains();
-                vm.getMenu();
+                    vm.getDomains();
+                    vm.getMenu();
+                }
             });
         },
         del: function (event) {
@@ -194,38 +209,30 @@ var vm = new Vue({
                 $.each(menuIds, function (idx, item) {
                     ids[idx] = item.id;
                 });
-                $.ajax({
-                    type: "POST",
+                Ajax.request({
                     url: "../sys/menu/delete",
+                    params: JSON.stringify(ids),
                     contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (r) {
-                        if (r.code === 0) {
-                            alert('操作成功', function (index) {
-                                vm.reload();
-                            });
-                        } else {
-                            alert(r.msg);
-                        }
+                    type: 'POST',
+                    successCallback: function () {
+                        alert('操作成功', function (index) {
+                            vm.reload();
+                        });
                     }
                 });
             });
         },
         saveOrUpdate: function (event) {
             var url = vm.menu.menuId == null ? "../sys/menu/save" : "../sys/menu/update";
-            $.ajax({
-                type: "POST",
+            Ajax.request({
                 url: url,
+                params: JSON.stringify(vm.menu),
                 contentType: "application/json",
-                data: JSON.stringify(vm.menu),
-                success: function (r) {
-                    if (r.code === 0) {
-                        alert('操作成功', function (index) {
-                            vm.reload();
-                        });
-                    } else {
-                        iview.Message.error(r.msg);
-                    }
+                type: 'POST',
+                successCallback: function () {
+                    alert('操作成功', function (index) {
+                        vm.reload();
+                    });
                 }
             });
         },

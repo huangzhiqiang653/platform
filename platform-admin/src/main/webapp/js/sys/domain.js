@@ -88,19 +88,15 @@ let vm = new Vue({
         },
         saveOrUpdate: function (event) {
             let url = vm.domain.id == null ? "../sys/domain/save" : "../sys/domain/update";
-            $.ajax({
-                type: "POST",
+            Ajax.request({
                 url: url,
+                params: JSON.stringify(vm.domain),
                 contentType: "application/json",
-                data: JSON.stringify(vm.domain),
-                success: function (r) {
-                    if (r.code === 0) {
-                        alert('操作成功', function (index) {
-                            vm.reload();
-                        });
-                    } else {
-                        alert(r.msg);
-                    }
+                type: 'POST',
+                successCallback: function () {
+                    alert('操作成功', function (index) {
+                        vm.reload();
+                    });
                 }
             });
         },
@@ -111,26 +107,26 @@ let vm = new Vue({
             }
 
             confirm('确定要删除选中的记录？', function () {
-                $.ajax({
-                    type: "POST",
+                Ajax.request({
                     url: "../sys/domain/delete",
+                    params: JSON.stringify(ids),
                     contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (r) {
-                        if (r.code == 0) {
-                            alert('操作成功', function (index) {
-                                $("#jqGrid").trigger("reloadGrid");
-                            });
-                        } else {
-                            alert(r.msg);
-                        }
+                    type: 'POST',
+                    successCallback: function () {
+                        alert('操作成功', function (index) {
+                            vm.reload();
+                        });
                     }
                 });
             });
         },
         getInfo: function (id) {
-            $.get("../sys/domain/info/" + id, function (r) {
-                vm.domain = r.domain;
+            Ajax.request({
+                url: "../sys/domain/info/" + id,
+                async: true,
+                successCallback: function (r) {
+                    vm.domain = r.domain;
+                }
             });
         },
         reload: function (event) {

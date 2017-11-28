@@ -2,9 +2,11 @@ package com.platform.controller;
 
 import com.platform.entity.SysDomainEntity;
 import com.platform.service.SysDomainService;
+import com.platform.utils.Constant;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import com.platform.utils.ShiroUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -101,8 +103,14 @@ public class SysDomainController {
     @RequestMapping("/queryAll")
     @ResponseBody
     public R queryAll(@RequestParam Map<String, Object> params) {
-
-        List<SysDomainEntity> list = domainService.queryList(params);
+        String userId = ShiroUtils.getUserId();
+        List<SysDomainEntity> list;
+        if (Constant.SUPER_ADMIN.equals(userId)) {
+            list = domainService.queryList(params);
+        } else {
+            params.put("userId", userId);
+            list = domainService.queryList(params);
+        }
 
         return R.ok().put("list", list);
     }

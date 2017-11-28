@@ -1,0 +1,1 @@
+UPDATE sys_menu SET status = 1

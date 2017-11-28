@@ -68,10 +68,14 @@ var vm = new Vue({
                 return;
             }
 
-            $.get("../sys/config/info/" + id, function (r) {
-                vm.showList = false;
-                vm.title = "修改";
-                vm.config = r.config;
+            Ajax.request({
+                url: "../sys/config/info/" + id,
+                async: true,
+                successCallback: function (r) {
+                    vm.showList = false;
+                    vm.title = "修改";
+                    vm.config = r.config;
+                }
             });
         },
         del: function (event) {
@@ -81,38 +85,30 @@ var vm = new Vue({
             }
 
             confirm('确定要删除选中的记录？', function () {
-                $.ajax({
-                    type: "POST",
+                Ajax.request({
                     url: "../sys/config/delete",
+                    params: JSON.stringify(ids),
                     contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (r) {
-                        if (r.code == 0) {
-                            alert('操作成功', function (index) {
-                                vm.reload();
-                            });
-                        } else {
-                            alert(r.msg);
-                        }
+                    type: 'POST',
+                    successCallback: function () {
+                        alert('操作成功', function (index) {
+                            vm.reload();
+                        });
                     }
                 });
             });
         },
         saveOrUpdate: function (event) {
             var url = vm.config.id == null ? "../sys/config/save" : "../sys/config/update";
-            $.ajax({
-                type: "POST",
+            Ajax.request({
                 url: url,
+                params: JSON.stringify(vm.config),
                 contentType: "application/json",
-                data: JSON.stringify(vm.config),
-                success: function (r) {
-                    if (r.code === 0) {
-                        alert('操作成功', function (index) {
-                            vm.reload();
-                        });
-                    } else {
-                        alert(r.msg);
-                    }
+                type: 'POST',
+                successCallback: function () {
+                    alert('操作成功', function (index) {
+                        vm.reload();
+                    });
                 }
             });
         },

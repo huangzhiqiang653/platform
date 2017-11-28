@@ -60,7 +60,7 @@ public class SysMenuEntity extends Tree {
     private String domainId;
 
     /**
-     * 状态
+     * 状态 0：无效 1：有效
      */
     private Integer status;
     /**

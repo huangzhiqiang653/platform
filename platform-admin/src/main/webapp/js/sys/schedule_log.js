@@ -16,9 +16,11 @@ $(function () {
             }
             },
             {label: '耗时(单位：毫秒)', name: 'times', width: 70},
-            {label: '执行时间', name: 'createTime', width: 80,formatter:function (value) {
+            {
+                label: '执行时间', name: 'createTime', width: 80, formatter: function (value) {
                 return transDate(value);
-            }}
+            }
+            }
         ],
         viewrecords: true,
         height: 385,
@@ -62,13 +64,16 @@ var vm = new Vue({
             }).trigger("reloadGrid");
         },
         showError: function (logId) {
-            $.get("../sys/scheduleLog/info/" + logId, function (r) {
-                openWindow({
-                    title: '失败信息',
-                    area: ['600px', '400px'],
-                    shadeClose: true,
-                    content: r.log.error
-                });
+            Ajax.request({
+                url: "../sys/scheduleLog/info/" + logId,
+                successCallback: function (r) {
+                    openWindow({
+                        title: '失败信息',
+                        area: ['600px', '400px'],
+                        shadeClose: true,
+                        content: r.log.error
+                    });
+                }
             });
         },
         back: function (event) {
