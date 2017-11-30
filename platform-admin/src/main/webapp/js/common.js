@@ -192,10 +192,14 @@ function handleSubmitValidate(vue, name, callback) {
  */
 function transDate(date, fmt) {
     if (date) {
-        try {
+        if (typeof date == 'number') {
             return new Date(date).dateFormat(fmt);
-        } catch (e) {
-            return '-';
+        } else {
+            try {
+                return new Date(date.replace('-', '/').replace('-', '/')).dateFormat(fmt);
+            } catch (e) {
+                return '-';
+            }
         }
     } else {
         return '-';

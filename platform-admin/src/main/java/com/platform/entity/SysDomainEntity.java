@@ -12,27 +12,45 @@ import java.util.Date;
  */
 public class SysDomainEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    //
+
     private String id;
-    //域编码
+    /**
+     * 域编码
+     */
     private String domainCode;
-    //域名称
+    /**
+     * 域名称
+     */
     private String domainName;
-    //域地址
+    /**
+     * 域地址
+     */
     private String domainUrl;
-    //状态  0：无效   1：有效
+    /**
+     * 状态  0：无效   1：有效
+     */
     private Integer domainStatus;
-    //创建者ID
+    /**
+     * 创建者ID
+     */
     private String createUser;
-    //创建时间
+    /**
+     * 创建时间
+     */
     private Date createTime;
-    //更新者ID
+    /**
+     * 更新者ID
+     */
     private String updateUser;
-    //更新时间
+    /**
+     * 更新时间
+     */
     private Date updateTime;
-    //备注
+    /**
+     * 备注
+     */
     private String remark;
-    //
+
     private String icon;
 
     /**

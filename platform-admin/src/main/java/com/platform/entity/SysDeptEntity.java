@@ -13,13 +13,21 @@ import java.util.List;
 public class SysDeptEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //部门ID
+    /**
+     * 部门ID
+     */
     private String deptId;
-    //上级部门ID，一级部门为0
+    /**
+     * 上级部门ID，一级部门为0
+     */
     private String parentId;
-    //部门名称
+    /**
+     * 部门名称
+     */
     private String name;
-    //排序
+    /**
+     * 排序
+     */
     private Integer orderNum;
 
     private Integer deptLevel;
