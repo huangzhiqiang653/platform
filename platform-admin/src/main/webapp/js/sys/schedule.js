@@ -192,6 +192,12 @@ var vm = new Vue({
                 page: page
             }).trigger("reloadGrid");
         },
+        reloadSearch: function () {
+            vm.q = {
+                beanName: ''
+            }
+            vm.query();
+        },
         handleSubmit: function (name) {
             handleSubmitValidate(this, name, function () {
                 vm.saveOrUpdate()

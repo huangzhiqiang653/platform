@@ -100,13 +100,13 @@ tbody > tr > th {
     display: inline-block;
 }
 
-.buttons-group {
-    float: right;
-    padding-top: 5px;
-    padding-right: 10px;
-}
-
 .search-group {
-    padding-top: 5px;
     padding-left: 10px;
+    padding-top: 5px;
+    display:inline;
+}
+.buttons-group {
+    display:inline;
+    float: right;
+    padding-right: 10px;
 }

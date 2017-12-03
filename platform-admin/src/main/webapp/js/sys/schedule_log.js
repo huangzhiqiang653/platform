@@ -63,6 +63,12 @@ var vm = new Vue({
                 page: 1
             }).trigger("reloadGrid");
         },
+        reloadSearch: function() {
+            vm.q = {
+                jobId: ''
+            }
+            vm.query();
+        },
         showError: function (logId) {
             Ajax.request({
                 url: "../sys/scheduleLog/info/" + logId,

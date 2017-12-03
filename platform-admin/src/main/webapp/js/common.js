@@ -425,6 +425,9 @@ Ajax = function () {
                 if (typeof(opt.successCallback) != 'undefined') {
                     opt.successCallback(data);
                 }
+            },
+            error: function () {
+                layer.alert("此页面发生未知异常,请联系管理员", {icon: 5});
             }
         });
     }

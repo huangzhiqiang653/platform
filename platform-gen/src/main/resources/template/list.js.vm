@@ -77,14 +77,10 @@ let vm = new Vue({
                 params: JSON.stringify(vm.${classname}),
                 type: "POST",
 			    contentType: "application/json",
-                success: function (r) {
-                    if (r.code === 0) {
-                        alert('操作成功', function (index) {
-                            vm.reload();
-                        });
-                    } else {
-                        alert(r.msg);
-                    }
+                successCallback: function (r) {
+                    alert('操作成功', function (index) {
+                        vm.reload();
+                    });
                 }
 			});
 		},

@@ -55,12 +55,23 @@ var vm = new Vue({
             vm.reload();
         },
         reload: function (event) {
-            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
 
+            let operation = '';
+            if (vm.isLogin && vm.isLogin.length > 0) {
+                operation = vm.isLogin[0];
+            }
             $("#jqGrid").jqGrid('setGridParam', {
-                postData: {'key': vm.q.key, 'operation': vm.isLogin},
+                postData: {'key': vm.q.key, 'operation': operation},
                 page: page
             }).trigger("reloadGrid");
+        },
+        reloadSearch: function () {
+            vm.q = {
+                key: ''
+            }
+            vm.isLogin = [];
+            vm.query();
         }
     }
 });

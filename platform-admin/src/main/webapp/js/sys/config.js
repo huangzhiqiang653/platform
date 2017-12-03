@@ -120,6 +120,12 @@ var vm = new Vue({
                 page: page
             }).trigger("reloadGrid");
         },
+        reloadSearch: function () {
+            vm.q = {
+                confKey: ''
+            }
+            vm.reload();
+        },
         handleSubmit: function (name) {
             handleSubmitValidate(this, name, function () {
                 vm.saveOrUpdate()

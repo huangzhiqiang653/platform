@@ -138,6 +138,12 @@ let vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
+        reloadSearch: function () {
+            vm.q = {
+                domainName: ''
+            }
+            vm.reload();
+        },
         handleSubmit: function (name) {
             handleSubmitValidate(this, name, function () {
                 vm.saveOrUpdate()

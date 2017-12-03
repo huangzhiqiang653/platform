@@ -53,6 +53,12 @@ var vm = new Vue({
                 page: 1
             }).trigger("reloadGrid");
         },
+        reloadSearch: function () {
+            vm.q = {
+                tableName: ''
+            }
+            vm.query();
+        },
         generator: function () {
             var tableNames = getSelectedRows();
             if (tableNames == null) {
