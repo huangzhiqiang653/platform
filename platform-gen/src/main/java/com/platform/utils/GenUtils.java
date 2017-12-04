@@ -212,11 +212,11 @@ public class GenUtils {
 
         if (template.contains("list.html.vm")) {
             return "main" + File.separator + "webapp" + File.separator + "WEB-INF" + File.separator + "page"
-                    + File.separator + "shop" + File.separator + className.toLowerCase() + ".html";
+                    + File.separator + "sys" + File.separator + className.toLowerCase() + ".html";
         }
 
         if (template.contains("list.js.vm")) {
-            return "main" + File.separator + "webapp" + File.separator + "js" + File.separator + "shop" + File.separator + className.toLowerCase() + ".js";
+            return "main" + File.separator + "webapp" + File.separator + "js" + File.separator + "sys" + File.separator + className.toLowerCase() + ".js";
         }
 
         if (template.contains("menu.sql.vm")) {

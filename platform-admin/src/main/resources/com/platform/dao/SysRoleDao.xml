@@ -102,7 +102,7 @@
 	</delete>
 	
 	<!-- 查询用户创建的角色ID列表 -->
-	<select id="queryRoleIdList" resultType="long">
+	<select id="queryRoleIdList" resultType="String">
 		select role_id from sys_role where create_user = #{createUser}
 	</select>
 
