@@ -106,7 +106,7 @@ var vm = new Vue({
         getDept: function () {
             //加载部门树
             Ajax.request({
-                url: 'sys/dept/list',
+                url: '../sys/dept/list',
                 async: true,
                 successCallback: function (r) {
                     ztree = $.fn.zTree.init($("#deptTree"), setting, r.list);

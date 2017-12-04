@@ -64,7 +64,7 @@ var vm = new Vue({
         title: null,
         dept: {
             parentName: null,
-            parentId: 0,
+            parentId: '01',
             orderNum: 0
         },
         ruleValidate: {
@@ -82,16 +82,26 @@ var vm = new Vue({
                 successCallback: function (r) {
                     ztree = $.fn.zTree.init($("#deptTree"), setting, r.deptList);
                     var node = ztree.getNodeByParam("deptId", vm.dept.parentId);
-                    ztree.selectNode(node);
-
-                    vm.dept.parentName = node.name;
+                    if (node) {
+                        ztree.selectNode(node);
+                        vm.dept.parentName = node.name;
+                    } else {
+                        node = ztree.getNodeByParam("deptId", '01');
+                        ztree.selectNode(node);
+                        vm.dept.parentName = node.name;
+                    }
                 }
             });
         },
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.dept = {parentName: null, parentId: 0, orderNum: 0};
+            var deptId = TreeGrid.table.getSelectedRow();
+            var parentId = '01';
+            if (deptId.length != 0) {
+                parentId = deptId[0].id;
+            }
+            vm.dept = {parentName: null, parentId: parentId, orderNum: 0};
             vm.getDept();
         },
         update: function () {
@@ -135,7 +145,7 @@ var vm = new Vue({
             Ajax.request({
                 url: url,
                 contentType: "application/json",
-                params:JSON.stringify(vm.dept),
+                params: JSON.stringify(vm.dept),
                 type: 'POST',
                 successCallback: function () {
                     alert('操作成功', function (index) {
