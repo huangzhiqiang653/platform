@@ -42,7 +42,19 @@ $(function () {
             rows: "limit",
             order: "order"
         },
+        footerrow: true,
         gridComplete: function () {
+            var rowNum = parseInt($(this).getGridParam('records'), 10);
+            if (rowNum > 0) {
+                $(".ui-jqgrid-sdiv").show();
+                var times = jQuery(this).getCol('times', false, 'sum');
+                $(this).footerData("set", {
+                    "jobId": "<font color='red'>合计<font>",
+                    "times": "<font color='red'>" + times + "<font>"
+                });
+            } else {
+                $(".ui-jqgrid-sdiv").hide();
+            }
             //隐藏grid底部滚动条
             $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
         }
@@ -63,7 +75,7 @@ var vm = new Vue({
                 page: 1
             }).trigger("reloadGrid");
         },
-        reloadSearch: function() {
+        reloadSearch: function () {
             vm.q = {
                 jobId: ''
             }
