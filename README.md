@@ -60,7 +60,24 @@
         代码生成器
         
         定时任务
-
+		
+		
+		开发环境配置：
+			platform-admin/src/main/resources/dev/log4j.properties
+			platform-admin/src/main/resources/dev/platform.properties
+		开发环境打包：
+			项目根目录>mvn package
+		
+		生产环境配置：
+			platform-admin/src/main/resources/prod/log4j.properties
+			platform-admin/src/main/resources/prod/platform.properties
+		生产环境打包：
+			项目根目录>mvn package -P prod
+		
+		打包路径：
+			platform-framework\target\platform-framework.war
+		
+		
     后台管理项目演示
     演示地址：http://47.100.0.48
     账号密码：admin/admin
@@ -69,7 +86,8 @@
     官方QQ群：66502035
     git：https://gitee.com/feixiangni/platform
     如需获取项目最新源码，请Watch、Star项目，同时也是对项目最好的支持
-    
+
+	
 ###登录页面
 ![](http://7xqbwh.dl1.z0.glb.clouddn.com/20171124/003745786b3479.png "登录")
 ###首页
