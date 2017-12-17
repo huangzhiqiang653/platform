@@ -31,12 +31,12 @@ public class SmsUtil {
      * @return
      * @throws Exception
      */
-    public static String crSendSms(String name, String pwd, StringBuffer mobileString, StringBuffer contextString, String sign, String stime, StringBuffer extno) throws Exception {
+    public static String crSendSms(String name, String pwd, String mobileString, String contextString, String sign, String stime, String extno) throws Exception {
         StringBuffer param = new StringBuffer();
         param.append("name=" + name);
         param.append("&pwd=" + pwd);
         param.append("&mobile=").append(mobileString);
-        param.append("&content=").append(URLEncoder.encode(contextString.toString(), "UTF-8"));
+        param.append("&content=").append(URLEncoder.encode(contextString, "UTF-8"));
         param.append("&stime=" + stime);
         param.append("&sign=").append(URLEncoder.encode(sign, "UTF-8"));
         param.append("&type=pt");
