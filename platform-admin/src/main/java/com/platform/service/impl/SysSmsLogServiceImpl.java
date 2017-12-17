@@ -8,8 +8,10 @@ import com.platform.service.SysSmsLogService;
 import com.platform.utils.ConfigConstant;
 import com.platform.utils.DateUtils;
 import com.platform.utils.IdUtil;
+import com.platform.utils.RRException;
 import com.platform.utils.ShiroUtils;
 import com.platform.utils.SmsUtil;
+import com.platform.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,6 +73,18 @@ public class SysSmsLogServiceImpl implements SysSmsLogService {
         String result = "";
         //获取云存储配置信息
         SmsConfig config = sysConfigService.getConfigObject(ConfigConstant.SMS_CONFIG_KEY, SmsConfig.class);
+        if (StringUtils.isNullOrEmpty(config)) {
+            throw new RRException("请先配置短信平台信息");
+        }
+        if (StringUtils.isNullOrEmpty(config.getName())) {
+            throw new RRException("请先配置短信平台用户名");
+        }
+        if (StringUtils.isNullOrEmpty(config.getPwd())) {
+            throw new RRException("请先配置短信平台密钥");
+        }
+        if (StringUtils.isNullOrEmpty(config.getSign())) {
+            throw new RRException("请先配置短信平台签名");
+        }
         try {
             /**
              * 状态,发送编号,无效号码数,成功提交数,黑名单数和消息，无论发送的号码是多少，一个发送请求只返回一个sendid，如果响应的状态不是“0”，则只有状态和消息
