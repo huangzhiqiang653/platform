@@ -33,7 +33,7 @@ public class ApiSmsController {
     /**
      * 安全起见，暴露的接口需要配置有效的请求IP
      */
-    private static final String VALID_IP = "0:0:0:0:0:0:0:1";
+    private static final String VALID_IP = "127.0.0.1";
 
     /**
      * 发送短信
@@ -46,7 +46,7 @@ public class ApiSmsController {
     public R sendSms(HttpServletRequest request, @RequestParam Map<String, String> params) {
         SysSmsLogEntity smsLog = new SysSmsLogEntity();
         String validIP = RequestUtil.getIpAddrByRequest(request);
-        if (VALID_IP.indexOf(validIP) > 0) {
+        if (VALID_IP.indexOf(validIP) < 0) {
             throw new RRException("非法IP请求！");
         }
         smsLog.setMobile(params.get("mobile"));
