@@ -37,10 +37,14 @@ public class SmsUtil {
         param.append("&pwd=" + pwd);
         param.append("&mobile=").append(mobileString);
         param.append("&content=").append(URLEncoder.encode(contextString, "UTF-8"));
-        param.append("&stime=" + stime);
+        if (StringUtils.isNotEmpty(stime)) {
+            param.append("&stime=" + stime);
+        }
         param.append("&sign=").append(URLEncoder.encode(sign, "UTF-8"));
         param.append("&type=pt");
-        param.append("&extno=").append(extno);
+        if (StringUtils.isNotEmpty(extno)) {
+            param.append("&extno=").append(extno);
+        }
 
         URL localURL = new URL("http://web.cr6868.com/asmx/smsservice.aspx?");
         URLConnection connection = localURL.openConnection();

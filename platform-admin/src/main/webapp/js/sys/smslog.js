@@ -15,7 +15,7 @@ $(function () {
             {label: '用户签名', name: 'sign', index: 'sign', width: 80},
             {
                 label: '发送状态', name: 'sendStatus', index: 'send_status', width: 80, formatter: function (value) {
-                if (value == 1) {
+                if (value === 0) {
                     return '<span class="label label-success">成功</span>';
                 }
                 return '<span class="label label-danger">失败</span>';
