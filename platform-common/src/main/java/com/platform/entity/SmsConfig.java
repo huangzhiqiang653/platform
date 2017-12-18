@@ -1,15 +1,3 @@
-/*
- * 创建时间：2017-12-17 09:11
- * 项目名称:platform
- * 类名称:SmsConfig.java
- * 包名称:com.platform.entity
- *
- * 修改履历:
- *          日期              修正者        主要内容
- *                                      
- *
- * Copyright (c) 2016-2017 兆尹科技
- */
 package com.platform.entity;
 
 import org.hibernate.validator.constraints.Range;

@@ -107,7 +107,11 @@ public class SysSmsLogServiceImpl implements SysSmsLogService {
             smsLog.setReturnMsg(arr[1]);
         }
         smsLog.setSendStatus(Integer.parseInt(arr[0]));
-        smsLog.setUserId(ShiroUtils.getUserId());
+        try {
+            smsLog.setUserId(ShiroUtils.getUserId());
+        } catch (Exception e) {
+            smsLog.setUserId("SYSTEM");
+        }
         smsLog.setSign(config.getSign());
         if (null == smsLog.getStime()) {
             smsLog.setStime(new Date());

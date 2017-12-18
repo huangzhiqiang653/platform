@@ -65,7 +65,10 @@
         定时任务
         
         短信服务平台
-		
+            安全起见，需配置有效IP地址。ApiSmsController.VALID_IP
+            然后配置短信平台账户信息
+		    向外提供发送短信接口：
+		        http://域名:端口/api/sendSms?mobile=13000000000,15209831990&content=发送的短信内容
 		
 		开发环境配置：
 			platform-admin/src/main/resources/dev/log4j.properties
