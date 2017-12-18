@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-11-21 15:39:09
+Date: 2017-12-18 13:21:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,8 +32,8 @@ CREATE TABLE `sys_config` (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
+INSERT INTO `sys_config` VALUES ('2', 'SMS_CONFIG_KEY', '{\"domain\":\"http://web.cr6868.com/asmx/smsservice.aspx?\",\"name\":\"\",\"pwd\":\"\",\"sign\":\"\",\"type\":1}', '0', '短信配置');
 INSERT INTO `sys_config` VALUES ('3', 'CLOUD_STORAGE_CONFIG_KEY', '{\"qcloudBucketName\":\"\",\"qcloudDomain\":\"\",\"qcloudPrefix\":\"\",\"qcloudSecretId\":\"\",\"qcloudSecretKey\":\"\",\"qiniuAccessKey\":\"NrgMfABZxWLo5B-YYSjoE8-AZ1EISdi1Z3ubLOeZ\",\"qiniuBucketName\":\"ios-app\",\"qiniuDomain\":\"http://7xqbwh.dl1.z0.glb.clouddn.com\",\"qiniuPrefix\":\"upload\",\"qiniuSecretKey\":\"uIwJHevMRWU0VLxFvgy0tAcOdGqasdtVlJkdy6vV\",\"type\":1}', '0', '云存储配置信息');
-INSERT INTO `sys_config` VALUES ('646ee341e91b46ba85abadd7f0a5e152', 'KEY', 'VALUE', '1', null);
 
 -- ----------------------------
 -- Table structure for `sys_dept`
@@ -59,7 +59,10 @@ CREATE TABLE `sys_dept` (
 INSERT INTO `sys_dept` VALUES ('01', null, '某某集团', '1', '1', '0', null, '2017-11-21 10:00:19', '1', '2017-11-21 15:33:30');
 INSERT INTO `sys_dept` VALUES ('0101', '01', '北京分公司', '1', '2', '0', '1', '2017-11-21 11:05:54', '1', '2017-11-21 15:34:31');
 INSERT INTO `sys_dept` VALUES ('0102', '01', '上海分公司', '2', '2', '0', '1', '2017-11-21 11:09:28', '1', '2017-11-21 15:34:38');
-INSERT INTO `sys_dept` VALUES ('0103', '01', '广州分公司', '3', '2', '0', '1', '2017-11-21 11:10:19', '1', '2017-11-21 15:34:46');
+INSERT INTO `sys_dept` VALUES ('010201', '0102', 'test', '1', '3', '-1', '1', '2017-12-04 19:38:38', null, null);
+INSERT INTO `sys_dept` VALUES ('0103', '01', '广州分公司', '3', '2', '-1', '1', '2017-11-21 11:10:19', '1', '2017-11-21 15:34:46');
+INSERT INTO `sys_dept` VALUES ('0104', '01', '333', '2', '2', '-1', '1', '2017-11-28 12:57:08', '1', '2017-11-28 12:57:16');
+INSERT INTO `sys_dept` VALUES ('0105', '01', '12', '0', '2', '-1', '1', '2017-12-04 19:42:59', '1', '2017-12-04 19:43:05');
 
 -- ----------------------------
 -- Table structure for `sys_dict`
@@ -108,7 +111,7 @@ CREATE TABLE `sys_domain` (
 -- Records of sys_domain
 -- ----------------------------
 INSERT INTO `sys_domain` VALUES ('1r4egj4584gf4a911a66761d6g73918d', 'shop', '超市管理系统', '', '1', '', '2017-11-20 11:34:54', '', '2017-11-20 11:35:04', '超市管理系统', 'ivu-icon ivu-icon-android-cart');
-INSERT INTO `sys_domain` VALUES ('735e3dd6bb4f4a9191a66761d6g73918', 'platform', '综合管理平台', '', '1', '', '2017-11-20 11:34:54', '', '2017-11-20 11:35:04', '综合管理平台', 'ivu-icon ivu-icon-android-contacts');
+INSERT INTO `sys_domain` VALUES ('735e3dd6bb4f4a9191a66761d6g73918', 'platform', '综合管理平台', '', '1', '', '2017-11-20 11:34:54', '1', '2017-11-28 15:41:30', '综合管理平台', 'ivu-icon ivu-icon-android-contacts');
 
 -- ----------------------------
 -- Table structure for `sys_log`
@@ -156,53 +159,56 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('01', '0', '系统管理', null, null, '0', 'fa fa-cog', '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:16:22', null, '2017-11-20 12:16:25');
-INSERT INTO `sys_menu` VALUES ('0101', '01', '管理员列表', 'sys/user.html', null, '1', 'fa fa-user', '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:27:16', null, '2017-11-20 12:27:20');
-INSERT INTO `sys_menu` VALUES ('010101', '0101', '查看', null, 'sys:user:list,sys:user:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
-INSERT INTO `sys_menu` VALUES ('010102', '0101', '新增', null, 'sys:user:save,sys:role:select', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
-INSERT INTO `sys_menu` VALUES ('010103', '0101', '修改', null, 'sys:user:update,sys:role:select', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('010104', '0101', '刪除', null, 'sys:user:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('0102', '01', '角色管理', 'sys/role.html', null, '1', 'fa fa-trophy', '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:21:14', '1', '2017-11-21 15:16:03');
-INSERT INTO `sys_menu` VALUES ('010201', '0102', '查看', null, 'sys:role:list,sys:role:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
-INSERT INTO `sys_menu` VALUES ('010202', '0102', '新增', null, 'sys:role:save,sys:menu:perms', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
-INSERT INTO `sys_menu` VALUES ('010203', '0102', '修改', null, 'sys:role:update,sys:menu:perms', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('010204', '0102', '刪除', null, 'sys:role:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('0103', '01', '部门管理', 'sys/dept.html', null, '1', 'fa fa-sitemap', '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:35:13', null, '2017-11-20 12:35:14');
-INSERT INTO `sys_menu` VALUES ('010301', '0103', '查看', null, 'sys:dept:list,sys:dept:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
-INSERT INTO `sys_menu` VALUES ('010302', '0103', '新增', null, 'sys:dept:save,sys:dept:select', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
-INSERT INTO `sys_menu` VALUES ('010303', '0103', '修改', null, 'sys:dept:update', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('010304', '0103', '刪除', null, 'sys:dept:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('0104', '01', '菜单管理', 'sys/menu.html', null, '1', 'fa fa-folder-open', '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:22:19', null, '2017-11-20 12:22:20');
-INSERT INTO `sys_menu` VALUES ('010401', '0104', '查看', null, 'sys:menu:list,sys:menu:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
-INSERT INTO `sys_menu` VALUES ('010402', '0104', '新增', null, 'sys:menu:save,sys:menu:select', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
-INSERT INTO `sys_menu` VALUES ('010403', '0104', '修改', null, 'sys:menu:update,sys:menu:select', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('010404', '0104', '刪除', null, 'sys:menu:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('0105', '01', '应用域管理', 'sys/domain.html', null, '1', 'fa fa-th-large', '5', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 19:10:31', '1', '2017-11-21 15:18:13');
-INSERT INTO `sys_menu` VALUES ('010501', '0105', '查看', null, 'sys:domain:list,sys:domain:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
-INSERT INTO `sys_menu` VALUES ('010502', '0105', '新增', null, 'sys:domain:save', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
-INSERT INTO `sys_menu` VALUES ('010503', '0105', '修改', null, 'sys:domain:update,sys:domain:select', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('010504', '0105', '刪除', null, 'sys:domain:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
-INSERT INTO `sys_menu` VALUES ('0106', '01', '文件上传', 'sys/oss.html', 'sys:oss:all', '1', 'fa fa-cloud-upload', '6', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:33:29', '1', '2017-11-21 15:19:00');
-INSERT INTO `sys_menu` VALUES ('0107', '01', '参数管理', 'sys/config.html', null, '1', 'fa fa-cogs', '7', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:03:03', '1', '2017-11-21 15:22:00');
-INSERT INTO `sys_menu` VALUES ('010701', '0107', '新增', null, 'sys:config:save', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:04:43', null, null);
-INSERT INTO `sys_menu` VALUES ('010702', '0107', '修改', null, 'sys:config:update', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:05:11', null, null);
-INSERT INTO `sys_menu` VALUES ('010703', '0107', '删除', null, 'sys:config:delete', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:05:32', null, null);
-INSERT INTO `sys_menu` VALUES ('010704', '0107', '查看', null, 'sys:config:list,sys:config:info', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:06:00', null, null);
-INSERT INTO `sys_menu` VALUES ('0108', '01', '系统日志', 'sys/log.html', null, '1', 'fa fa-code', '8', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:17:19', '1', '2017-11-21 15:21:49');
-INSERT INTO `sys_menu` VALUES ('010801', '0108', '查看', null, 'sys:log:list', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '0', '1', '2017-11-21 14:18:18', null, null);
-INSERT INTO `sys_menu` VALUES ('02', '0', '代码工具', null, null, '0', 'fa fa-coffee', '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:18:36', '1', '2017-11-21 15:15:05');
-INSERT INTO `sys_menu` VALUES ('0201', '02', 'SQL监控', 'druid/sql.html', null, '1', 'fa fa-linux', '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:23:55', null, '2017-11-20 12:23:58');
-INSERT INTO `sys_menu` VALUES ('0202', '02', '代码生成器', 'sys/generator.html', 'sys:generator:list,sys:generator:code', '1', 'fa fa-rocket', '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:25:30', null, '2017-11-20 12:25:32');
-INSERT INTO `sys_menu` VALUES ('03', '0', '任务管理', null, null, '0', 'fa fa-fire', '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:27:15', null, '2017-11-20 12:27:19');
-INSERT INTO `sys_menu` VALUES ('0301', '03', '定时任务', 'sys/schedule.html', null, '1', 'fa fa-tasks', '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:28:45', null, '2017-11-20 12:28:47');
-INSERT INTO `sys_menu` VALUES ('030101', '0301', '查看', null, 'sys:schedule:list,sys:schedule:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('030102', '0301', '新增', null, 'sys:schedule:save', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('030103', '0301', '修改', null, 'sys:schedule:update', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('030104', '0301', '删除', null, 'sys:schedule:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('030105', '0301', '暂停', null, 'sys:schedule:pause', '2', null, '5', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('030106', '0301', '恢复', null, 'sys:schedule:resume', '2', null, '6', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('030107', '0301', '立即执行', null, 'sys:schedule:run', '2', null, '7', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
-INSERT INTO `sys_menu` VALUES ('0302', '03', '定时任务日志', 'sys/schedule_log.html', 'sys:schedule:log', '1', 'fa fa-code', '2', '735e3dd6bb4f4a9191a66761d6g73918', '0', null, '2017-11-20 12:31:16', '1', '2017-11-21 15:35:45');
+INSERT INTO `sys_menu` VALUES ('01', '0', '系统管理', null, null, '0', 'fa fa-cog', '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:16:22', null, '2017-11-20 12:16:25');
+INSERT INTO `sys_menu` VALUES ('0101', '01', '管理员列表', 'sys/user.html', null, '1', 'fa fa-user', '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:27:16', null, '2017-11-20 12:27:20');
+INSERT INTO `sys_menu` VALUES ('010101', '0101', '查看', null, 'sys:user:list,sys:user:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
+INSERT INTO `sys_menu` VALUES ('010102', '0101', '新增', null, 'sys:user:save,sys:role:select', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
+INSERT INTO `sys_menu` VALUES ('010103', '0101', '修改', null, 'sys:user:update,sys:role:select', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('010104', '0101', '刪除', null, 'sys:user:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('0102', '01', '角色管理', 'sys/role.html', null, '1', 'fa fa-trophy', '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:21:14', '1', '2017-11-21 15:16:03');
+INSERT INTO `sys_menu` VALUES ('010201', '0102', '查看', null, 'sys:role:list,sys:role:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
+INSERT INTO `sys_menu` VALUES ('010202', '0102', '新增', null, 'sys:role:save,sys:menu:perms', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
+INSERT INTO `sys_menu` VALUES ('010203', '0102', '修改', null, 'sys:role:update,sys:menu:perms', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('010204', '0102', '刪除', null, 'sys:role:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('0103', '01', '部门管理', 'sys/dept.html', null, '1', 'fa fa-sitemap', '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:35:13', null, '2017-11-20 12:35:14');
+INSERT INTO `sys_menu` VALUES ('010301', '0103', '查看', null, 'sys:dept:list,sys:dept:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
+INSERT INTO `sys_menu` VALUES ('010302', '0103', '新增', null, 'sys:dept:save,sys:dept:select', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
+INSERT INTO `sys_menu` VALUES ('010303', '0103', '修改', null, 'sys:dept:update', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('010304', '0103', '刪除', null, 'sys:dept:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('0104', '01', '菜单管理', 'sys/menu.html', null, '1', 'fa fa-folder-open', '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:22:19', null, '2017-11-20 12:22:20');
+INSERT INTO `sys_menu` VALUES ('010401', '0104', '查看', null, 'sys:menu:list,sys:menu:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
+INSERT INTO `sys_menu` VALUES ('010402', '0104', '新增', null, 'sys:menu:save,sys:menu:select', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
+INSERT INTO `sys_menu` VALUES ('010403', '0104', '修改', null, 'sys:menu:update,sys:menu:select', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('010404', '0104', '刪除', null, 'sys:menu:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('0105', '01', '应用域管理', 'sys/domain.html', null, '1', 'fa fa-th-large', '5', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 19:10:31', '1', '2017-11-21 15:18:13');
+INSERT INTO `sys_menu` VALUES ('010501', '0105', '查看', null, 'sys:domain:list,sys:domain:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:00', null, '2017-11-20 12:38:01');
+INSERT INTO `sys_menu` VALUES ('010502', '0105', '新增', null, 'sys:domain:save', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:38:39', null, '2017-11-20 12:38:41');
+INSERT INTO `sys_menu` VALUES ('010503', '0105', '修改', null, 'sys:domain:update,sys:domain:select', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:26', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('010504', '0105', '刪除', null, 'sys:domain:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:39:27', null, '2017-11-20 12:39:31');
+INSERT INTO `sys_menu` VALUES ('0106', '01', '文件上传', 'sys/oss.html', 'sys:oss:all', '1', 'fa fa-cloud-upload', '6', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:33:29', '1', '2017-11-21 15:19:00');
+INSERT INTO `sys_menu` VALUES ('0107', '01', '参数管理', 'sys/config.html', null, '1', 'fa fa-cogs', '7', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:03:03', '1', '2017-11-21 15:22:00');
+INSERT INTO `sys_menu` VALUES ('010701', '0107', '新增', null, 'sys:config:save', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:04:43', null, null);
+INSERT INTO `sys_menu` VALUES ('010702', '0107', '修改', null, 'sys:config:update', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:05:11', null, null);
+INSERT INTO `sys_menu` VALUES ('010703', '0107', '删除', null, 'sys:config:delete', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:05:32', null, null);
+INSERT INTO `sys_menu` VALUES ('010704', '0107', '查看', null, 'sys:config:list,sys:config:info', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:06:00', null, null);
+INSERT INTO `sys_menu` VALUES ('0108', '01', '系统日志', 'sys/log.html', null, '1', 'fa fa-code', '8', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:17:19', '1', '2017-11-21 15:21:49');
+INSERT INTO `sys_menu` VALUES ('010801', '0108', '查看', null, 'sys:log:list', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-11-21 14:18:18', null, null);
+INSERT INTO `sys_menu` VALUES ('02', '0', '代码工具', null, null, '0', 'fa fa-coffee', '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:18:36', '1', '2017-11-21 15:15:05');
+INSERT INTO `sys_menu` VALUES ('0201', '02', 'SQL监控', 'druid/sql.html', null, '1', 'fa fa-linux', '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:23:55', null, '2017-11-20 12:23:58');
+INSERT INTO `sys_menu` VALUES ('0202', '02', '代码生成器', 'sys/generator.html', 'sys:generator:list,sys:generator:code', '1', 'fa fa-rocket', '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:25:30', null, '2017-11-20 12:25:32');
+INSERT INTO `sys_menu` VALUES ('03', '0', '任务管理', null, null, '0', 'fa fa-fire', '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:27:15', null, '2017-11-20 12:27:19');
+INSERT INTO `sys_menu` VALUES ('0301', '03', '定时任务', 'sys/schedule.html', null, '1', 'fa fa-tasks', '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:28:45', null, '2017-11-20 12:28:47');
+INSERT INTO `sys_menu` VALUES ('030101', '0301', '查看', null, 'sys:schedule:list,sys:schedule:info', '2', null, '1', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('030102', '0301', '新增', null, 'sys:schedule:save', '2', null, '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('030103', '0301', '修改', null, 'sys:schedule:update', '2', null, '3', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('030104', '0301', '删除', null, 'sys:schedule:delete', '2', null, '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('030105', '0301', '暂停', null, 'sys:schedule:pause', '2', null, '5', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('030106', '0301', '恢复', null, 'sys:schedule:resume', '2', null, '6', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('030107', '0301', '立即执行', null, 'sys:schedule:run', '2', null, '7', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:47:45', null, '2017-11-20 12:47:48');
+INSERT INTO `sys_menu` VALUES ('0302', '03', '定时任务日志', 'sys/schedule_log.html', 'sys:schedule:log', '1', 'fa fa-code', '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', null, '2017-11-20 12:31:16', '1', '2017-11-21 15:35:45');
+INSERT INTO `sys_menu` VALUES ('04', '0', '短信平台', null, null, '0', 'fa fa-television', '4', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-12-16 23:42:22', '1', '2017-12-17 11:55:56');
+INSERT INTO `sys_menu` VALUES ('0401', '04', '短信配置', 'sys/smslog.html', null, '1', 'fa fa-envelope-open', '2', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-12-16 23:45:35', '1', '2017-12-17 11:56:26');
+INSERT INTO `sys_menu` VALUES ('040101', '0401', '查看', null, 'sys:smslog:list,sys:smslog:info', '2', null, '0', '735e3dd6bb4f4a9191a66761d6g73918', '1', '1', '2017-12-16 23:46:10', null, null);
 
 -- ----------------------------
 -- Table structure for `sys_oss`
@@ -220,6 +226,7 @@ CREATE TABLE `sys_oss` (
 -- Records of sys_oss
 -- ----------------------------
 INSERT INTO `sys_oss` VALUES ('c098fd75eea241c48e28d668e234a420', 'http://7xqbwh.dl1.z0.glb.clouddn.com/upload/20171120/20112897c61a2.jpg', null, '2017-11-20 20:11:30');
+INSERT INTO `sys_oss` VALUES ('cc4d907f81464c0bbf08a10d03d6bae1', 'http://7xqbwh.dl1.z0.glb.clouddn.com/20171212/21131417147fdb.png', null, '2017-12-12 21:13:15');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -317,6 +324,33 @@ INSERT INTO `sys_role_menu` VALUES ('d9e053bfce7c11e78f3b54ee75866478', '1acae81
 INSERT INTO `sys_role_menu` VALUES ('d9e05402ce7c11e78f3b54ee75866478', '1acae81674cf4525a2b2eec2e065965c', '0302');
 
 -- ----------------------------
+-- Table structure for `sys_sms_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_sms_log`;
+CREATE TABLE `sys_sms_log` (
+  `id` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '主键',
+  `user_id` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '操作人',
+  `content` text COLLATE utf8_unicode_ci COMMENT '必填参数。发送内容（1-500 个汉字）UTF-8编码',
+  `mobile` text COLLATE utf8_unicode_ci COMMENT '必填参数。手机号码。多个以英文逗号隔开',
+  `stime` datetime DEFAULT NULL COMMENT '可选参数。发送时间，填写时已填写的时间发送，不填时为当前时间发送',
+  `sign` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '必填参数。用户签名',
+  `type` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '必填参数。固定值 pt',
+  `extno` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '可选参数。扩展码，用户定义扩展码，只能为数字',
+  `send_status` int(11) DEFAULT NULL COMMENT '1成功 0失败',
+  `send_id` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '发送编号',
+  `invalid_num` int(11) DEFAULT NULL COMMENT '无效号码数',
+  `success_num` int(11) DEFAULT NULL COMMENT '成功提交数',
+  `black_num` int(11) DEFAULT NULL COMMENT '黑名单数',
+  `return_msg` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '返回消息',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of sys_sms_log
+-- ----------------------------
+INSERT INTO `sys_sms_log` VALUES ('3a526e31529e4f9683f2377ba4361124', '1', '尊敬的用户，您的验证码是：462457。', '15209831990', '2017-12-18 09:19:49', '【鲜风生活】', 'pt', null, '0', '2017121809180767189495840', '0', '1', '0', '提交成功');
+
+-- ----------------------------
 -- Table structure for `sys_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
@@ -358,51 +392,6 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('0b886bf7ce7f11e78f3b54ee75866478', '1', '1acae81674cf4525a2b2eec2e065965c');
 
--- ----------------------------
--- Table structure for `schedule_job`
--- ----------------------------
-DROP TABLE IF EXISTS `schedule_job`;
-CREATE TABLE `schedule_job` (
-  `job_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
-  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
-  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
-  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
-  `cron_expression` varchar(100) DEFAULT NULL COMMENT 'cron表达式',
-  `status` tinyint(4) DEFAULT NULL COMMENT '任务状态',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='定时任务';
-
--- ----------------------------
--- Records of schedule_job
--- ----------------------------
-INSERT INTO `schedule_job` VALUES ('1', 'testTask', 'test', 'platform', '0 0/30 * * * ?', '1', '有参数测试', '2016-12-01 23:16:46');
-INSERT INTO `schedule_job` VALUES ('2', 'testTask', 'test2', null, '0 0/30 * * * ?', '1', '无参数测试', '2016-12-03 14:55:56');
-
--- ----------------------------
--- Table structure for `schedule_job_log`
--- ----------------------------
-DROP TABLE IF EXISTS `schedule_job_log`;
-CREATE TABLE `schedule_job_log` (
-  `log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务日志id',
-  `job_id` bigint(20) NOT NULL COMMENT '任务id',
-  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
-  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
-  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
-  `status` tinyint(4) NOT NULL COMMENT '任务状态    0：成功    1：失败',
-  `error` varchar(2000) DEFAULT NULL COMMENT '失败信息',
-  `times` int(11) NOT NULL COMMENT '耗时(单位：毫秒)',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`log_id`),
-  KEY `job_id` (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
-
--- ----------------------------
--- Records of schedule_job_log
--- ----------------------------
-INSERT INTO `schedule_job_log` VALUES ('3', '3', 'testTask', 'test2', null, '0', null, '2', '2017-11-21 14:01:17');
-INSERT INTO `schedule_job_log` VALUES ('4', '1', 'testTask', 'test', 'platform', '0', null, '1036', '2017-11-21 15:12:37');
 
 -- ----------------------------
 -- Table structure for `qrtz_blob_triggers`
@@ -559,7 +548,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('PlatformScheduler', 'Win_PC1511245968452', '1511249935412', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('PlatformScheduler', 'pc1513560683423', '1513560735239', '15000');
 
 -- ----------------------------
 -- Table structure for `qrtz_simple_triggers`
@@ -649,3 +638,49 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 INSERT INTO `qrtz_triggers` VALUES ('PlatformScheduler', 'TASK_1', 'DEFAULT', 'TASK_1', 'DEFAULT', null, '1507390200000', '-1', '5', 'PAUSED', 'CRON', '1507388787000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720025636F6D2E706C6174666F726D2E656E746974792E5363686564756C654A6F62456E7469747900000000000000010200084C00086265616E4E616D657400124C6A6176612F6C616E672F537472696E673B4C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000E63726F6E45787072657373696F6E71007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E00094C000672656D61726B71007E00094C00067374617475737400134C6A6176612F6C616E672F496E74656765723B7870740008746573745461736B7372000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000158BAF593307874000E3020302F3330202A202A202A203F7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000000000000174000474657374740008706C6174666F726D74000FE69C89E58F82E695B0E6B58BE8AF95737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0013000000017800);
 INSERT INTO `qrtz_triggers` VALUES ('PlatformScheduler', 'TASK_2', 'DEFAULT', 'TASK_2', 'DEFAULT', null, '1507390200000', '-1', '5', 'PAUSED', 'CRON', '1507388787000', '0', null, '2', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720025636F6D2E706C6174666F726D2E656E746974792E5363686564756C654A6F62456E7469747900000000000000010200084C00086265616E4E616D657400124C6A6176612F6C616E672F537472696E673B4C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000E63726F6E45787072657373696F6E71007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E00094C000672656D61726B71007E00094C00067374617475737400134C6A6176612F6C616E672F496E74656765723B7870740008746573745461736B7372000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000158C377C4607874000E3020302F3330202A202A202A203F7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000000000000274000574657374327074000FE697A0E58F82E695B0E6B58BE8AF95737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0013000000017800);
+
+-- ----------------------------
+-- Table structure for `schedule_job`
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_job`;
+CREATE TABLE `schedule_job` (
+  `job_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
+  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
+  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
+  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
+  `cron_expression` varchar(100) DEFAULT NULL COMMENT 'cron表达式',
+  `status` tinyint(4) DEFAULT NULL COMMENT '任务状态',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`job_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='定时任务';
+
+-- ----------------------------
+-- Records of schedule_job
+-- ----------------------------
+INSERT INTO `schedule_job` VALUES ('1', 'testTask', 'test', 'platform', '0 0/30 * * * ?', '1', '有参数测试', '2016-12-01 23:16:46');
+INSERT INTO `schedule_job` VALUES ('2', 'testTask', 'test2', null, '0 0/30 * * * ?', '1', '无参数测试', '2016-12-03 14:55:56');
+
+-- ----------------------------
+-- Table structure for `schedule_job_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule_job_log`;
+CREATE TABLE `schedule_job_log` (
+  `log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务日志id',
+  `job_id` bigint(20) NOT NULL COMMENT '任务id',
+  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
+  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
+  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
+  `status` tinyint(4) NOT NULL COMMENT '任务状态    0：成功    1：失败',
+  `error` varchar(2000) DEFAULT NULL COMMENT '失败信息',
+  `times` int(11) NOT NULL COMMENT '耗时(单位：毫秒)',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`log_id`),
+  KEY `job_id` (`job_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+
+-- ----------------------------
+-- Records of schedule_job_log
+-- ----------------------------
+INSERT INTO `schedule_job_log` VALUES ('3', '3', 'testTask', 'test2', null, '0', null, '2', '2017-11-21 14:01:17');
+INSERT INTO `schedule_job_log` VALUES ('4', '1', 'testTask', 'test', 'platform', '0', null, '1036', '2017-11-21 15:12:37');
