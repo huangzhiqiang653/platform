@@ -696,3 +696,12 @@ CREATE TABLE `rest_user` (
   `weixin_openid` varchar(200) DEFAULT NULL COMMENT 'weixin_openid',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='会员用户';
+
+DROP TABLE IF EXISTS `tb_token`;
+CREATE TABLE `tb_token` (
+  `user_id` bigint(32) NOT NULL COMMENT 'id',
+	`token` varchar(100) not null comment 'token',
+	`expire_time` datetime null comment '过期时间',
+	`update_time` datetime null comment '更新时间',
+  constraint token unique (token)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='用户Token';
