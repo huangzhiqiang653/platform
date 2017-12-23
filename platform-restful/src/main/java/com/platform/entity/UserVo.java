@@ -12,17 +12,17 @@ public class UserVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * id
      */
     private Long userId;
     /**
-     * 会员名称
+     * 用户名
      */
-    private String username;
+    private String userName;
     /**
-     * 会员密码
+     * 密码
      */
-    private String password;
+    private String passWord;
     /**
      * 性别
      */
@@ -32,151 +32,109 @@ public class UserVo implements Serializable {
      */
     private Date birthday;
     /**
-     * 注册时间
-     */
-    private Date register_time;
-    /**
-     * 最后登录时间
-     */
-    private Date last_login_time;
-    /**
-     * 最后登录Ip
-     */
-    private String last_login_ip;
-    /**
-     * 会员等级
-     */
-    private Integer user_level_id;
-    /**
-     * 别名
-     */
-    private String nickname;
-    /**
-     * 手机号码
+     * 手机号
      */
     private String mobile;
     /**
-     * 注册Ip
+     * weixin_openid
      */
-    private String register_ip;
-    /**
-     * 头像
-     */
-    private String avatar;
-    /**
-     * 微信Id
-     */
-    private String weixin_openid;
+    private String weixinOpenid;
 
-    public Long getUserId() {
-        return userId;
-    }
-
+    /**
+     * 设置：id
+     */
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    /**
+     * 获取：id
+     */
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    /**
+     * 设置：用户名
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    /**
+     * 获取：用户名
+     */
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    /**
+     * 设置：密码
+     */
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public Integer getGender() {
-        return gender;
+    /**
+     * 获取：密码
+     */
+    public String getPassWord() {
+        return passWord;
     }
 
+    /**
+     * 设置：性别
+     */
     public void setGender(Integer gender) {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    /**
+     * 获取：性别
+     */
+    public Integer getGender() {
+        return gender;
     }
 
+    /**
+     * 设置：出生日期
+     */
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
-    public Date getRegister_time() {
-        return register_time;
+    /**
+     * 获取：出生日期
+     */
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setRegister_time(Date register_time) {
-        this.register_time = register_time;
-    }
-
-    public Date getLast_login_time() {
-        return last_login_time;
-    }
-
-    public void setLast_login_time(Date last_login_time) {
-        this.last_login_time = last_login_time;
-    }
-
-    public String getLast_login_ip() {
-        return last_login_ip;
-    }
-
-    public void setLast_login_ip(String last_login_ip) {
-        this.last_login_ip = last_login_ip;
-    }
-
-    public Integer getUser_level_id() {
-        return user_level_id;
-    }
-
-    public void setUser_level_id(Integer user_level_id) {
-        this.user_level_id = user_level_id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
+    /**
+     * 设置：手机号
+     */
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
-    public String getRegister_ip() {
-        return register_ip;
+    /**
+     * 获取：手机号
+     */
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setRegister_ip(String register_ip) {
-        this.register_ip = register_ip;
+    /**
+     * 设置：weixin_openid
+     */
+    public void setWeixinOpenid(String weixinOpenid) {
+        this.weixinOpenid = weixinOpenid;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getWeixin_openid() {
-        return weixin_openid;
-    }
-
-    public void setWeixin_openid(String weixin_openid) {
-        this.weixin_openid = weixin_openid;
+    /**
+     * 获取：weixin_openid
+     */
+    public String getWeixinOpenid() {
+        return weixinOpenid;
     }
 }

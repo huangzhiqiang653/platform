@@ -684,3 +684,15 @@ CREATE TABLE `schedule_job_log` (
 -- ----------------------------
 INSERT INTO `schedule_job_log` VALUES ('3', '3', 'testTask', 'test2', null, '0', null, '2', '2017-11-21 14:01:17');
 INSERT INTO `schedule_job_log` VALUES ('4', '1', 'testTask', 'test', 'platform', '0', null, '1036', '2017-11-21 15:12:37');
+
+DROP TABLE IF EXISTS `rest_user`;
+CREATE TABLE `rest_user` (
+  `user_id` bigint(32) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_name` varchar(32) NOT NULL COMMENT '用户名',
+  `pass_word` varchar(32) DEFAULT NULL COMMENT '密码',
+  `gender` tinyint(1) DEFAULT NULL COMMENT '性别',
+  `birthday` DATETIME COMMENT '出生日期',
+  `mobile` varchar(32) NOT NULL COMMENT '手机号',
+  `weixin_openid` varchar(200) DEFAULT NULL COMMENT 'weixin_openid',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='会员用户';

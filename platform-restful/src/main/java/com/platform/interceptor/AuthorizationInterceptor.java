@@ -25,7 +25,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     private TokenService tokenService;
 
     public static final String LOGIN_USER_KEY = "LOGIN_USER_KEY";
-    public static final String LOGIN_TOKEN_KEY = "X-Nideshop-Token";
+    public static final String LOGIN_TOKEN_KEY = "X-Mall-Token";
 
 
     @Override

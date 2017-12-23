@@ -2,13 +2,11 @@ package com.platform.service;
 
 import com.platform.dao.ApiUserMapper;
 import com.platform.entity.UserVo;
-import com.platform.utils.RRException;
-import com.platform.validator.Assert;
+import com.platform.utils.IdUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +17,6 @@ public class ApiUserService {
 
     public UserVo queryObject(Long userId) {
         return userDao.queryObject(userId);
-    }
-
-    public UserVo queryByOpenId(String openId) {
-        return userDao.queryByOpenId(openId);
     }
 
     public List<UserVo> queryList(Map<String, Object> map) {
@@ -36,9 +30,8 @@ public class ApiUserService {
     public void save(String mobile, String password) {
         UserVo user = new UserVo();
         user.setMobile(mobile);
-        user.setUsername(mobile);
-        user.setPassword(DigestUtils.sha256Hex(password));
-        user.setRegister_time(new Date());
+        user.setUserName(mobile);
+        user.setPassWord(DigestUtils.sha256Hex(password));
         userDao.save(user);
     }
 
