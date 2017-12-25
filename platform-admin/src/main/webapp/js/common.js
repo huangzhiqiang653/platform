@@ -439,3 +439,30 @@ Ajax = function () {
         request: request
     };
 }();
+
+/**
+ * 缓存字典数据
+ * 使用方法：字典 调用方式为在table的列或者columns 的列中 formatter:function(value){ return Dict.getDictValue(groupCode,value);}
+ * 其中value为类型code  返回值为类型名称
+ */
+Dict = function () {
+    return {
+        getDictValue: function (groupCode, dictKey) {
+            var dictValue = '-';
+            Ajax.request({
+                url: '/sys/dict/getDictValue',
+                dataType: 'json',
+                params: {
+                    groupCode: groupCode, dictKey: dictKey
+                },
+                cache: true,
+                async: false,
+                type: 'GET',
+                successCallback: function (data) {
+                    dictValue = data.dictValue;
+                }
+            });
+            return dictValue;
+        }
+    };
+}();

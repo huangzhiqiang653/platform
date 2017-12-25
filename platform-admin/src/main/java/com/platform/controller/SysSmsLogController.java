@@ -42,7 +42,6 @@ public class SysSmsLogController {
      */
     @RequestMapping("/list")
     @RequiresPermissions("sys:smslog:list")
-    @ResponseBody
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
@@ -60,7 +59,6 @@ public class SysSmsLogController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:smslog:info")
-    @ResponseBody
     public R info(@PathVariable("id") String id) {
         SysSmsLogEntity smsLog = smsLogService.queryObject(id);
 
@@ -72,7 +70,6 @@ public class SysSmsLogController {
      */
     @RequestMapping("/save")
     @RequiresPermissions("sys:smslog:save")
-    @ResponseBody
     public R save(@RequestBody SysSmsLogEntity smsLog) {
         smsLogService.save(smsLog);
 
@@ -84,7 +81,6 @@ public class SysSmsLogController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("sys:smslog:update")
-    @ResponseBody
     public R update(@RequestBody SysSmsLogEntity smsLog) {
         smsLogService.update(smsLog);
 
@@ -96,7 +92,6 @@ public class SysSmsLogController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("sys:smslog:delete")
-    @ResponseBody
     public R delete(@RequestBody String[] ids) {
         smsLogService.deleteBatch(ids);
 
@@ -107,7 +102,6 @@ public class SysSmsLogController {
      * 查看所有列表
      */
     @RequestMapping("/queryAll")
-    @ResponseBody
     public R queryAll(@RequestParam Map<String, Object> params) {
 
         List<SysSmsLogEntity> list = smsLogService.queryList(params);
@@ -129,16 +123,17 @@ public class SysSmsLogController {
      * 保存短信配置信息
      */
     @RequestMapping("/saveConfig")
+    @RequiresPermissions("sys:smslog:saveConfig")
     public R saveConfig(@RequestBody SmsConfig config) {
         sysConfigService.updateValueByKey(KEY, JSON.toJSONString(config));
         return R.ok();
     }
 
     /**
-     * 修改
+     * 发送短信
      */
     @RequestMapping("/sendSms")
-    @ResponseBody
+    @RequiresPermissions("sys:smslog:sendSms")
     public R sendSms(@RequestBody SysSmsLogEntity smsLog) {
         SysSmsLogEntity sysSmsLogEntity = smsLogService.sendSms(smsLog);
         return R.ok().put("result", sysSmsLogEntity);

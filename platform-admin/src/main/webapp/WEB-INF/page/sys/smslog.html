@@ -16,9 +16,13 @@
                 <i-button @click="reloadSearch">重置</i-button>
             </div>
             <div class="buttons-group">
+                #if($shiro.hasPermission("sys:user:save"))
                 <i-button type="success" @click="addConfig"><i class="fa fa-sun-o"></i>&nbsp;短信配置</i-button>
+                #end
+                #if($shiro.hasPermission("sys:user:save"))
                 <i-button type="info" @click="sendSms"><i class="ivu-icon ivu-icon-android-send"></i>&nbsp;发送短信
                 </i-button>
+                #end
             </div>
         </Row>
         <table id="jqGrid"></table>

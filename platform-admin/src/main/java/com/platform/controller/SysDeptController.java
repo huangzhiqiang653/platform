@@ -1,5 +1,6 @@
 package com.platform.controller;
 
+import com.platform.annotation.SysLog;
 import com.platform.entity.SysDeptEntity;
 import com.platform.service.SysDeptService;
 import com.platform.utils.Constant;
@@ -89,6 +90,7 @@ public class SysDeptController extends AbstractController {
     /**
      * 保存
      */
+    @SysLog("新增部门")
     @RequestMapping("/save")
     @RequiresPermissions("sys:dept:save")
     public R save(@RequestBody SysDeptEntity dept) {
@@ -100,6 +102,7 @@ public class SysDeptController extends AbstractController {
     /**
      * 修改
      */
+    @SysLog("修改部门")
     @RequestMapping("/update")
     @RequiresPermissions("sys:dept:update")
     public R update(@RequestBody SysDeptEntity dept) {
@@ -111,6 +114,7 @@ public class SysDeptController extends AbstractController {
     /**
      * 删除
      */
+    @SysLog("删除部门")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:dept:delete")
     public R delete(String deptId) {

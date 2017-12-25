@@ -1,6 +1,7 @@
 package com.platform.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.platform.annotation.SysLog;
 import com.platform.entity.SysOssEntity;
 import com.platform.oss.CloudStorageConfig;
 import com.platform.oss.OSSFactory;
@@ -73,6 +74,7 @@ public class SysOssController {
     /**
      * 保存云存储配置信息
      */
+    @SysLog("保存云存储配置信息")
     @RequestMapping("/saveConfig")
     @RequiresPermissions("sys:oss:all")
     public R saveConfig(@RequestBody CloudStorageConfig config) {
