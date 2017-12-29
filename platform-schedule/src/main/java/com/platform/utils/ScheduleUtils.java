@@ -37,7 +37,7 @@ public class ScheduleUtils {
      * 获取表达式触发器
      *
      * @param scheduler scheduler
-     * @param jobId jobId
+     * @param jobId     jobId
      * @return CronTrigger
      */
     public static CronTrigger getCronTrigger(Scheduler scheduler, Long jobId) {
@@ -51,7 +51,7 @@ public class ScheduleUtils {
     /**
      * 创建定时任务
      *
-     * @param scheduler scheduler
+     * @param scheduler   scheduler
      * @param scheduleJob scheduleJob
      */
     public static void createScheduleJob(Scheduler scheduler, ScheduleJobEntity scheduleJob) {
@@ -60,8 +60,12 @@ public class ScheduleUtils {
             JobDetail jobDetail = JobBuilder.newJob(ScheduleJob.class).withIdentity(getJobKey(scheduleJob.getJobId())).build();
 
             //表达式调度构建器
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
-                    .withMisfireHandlingInstructionDoNothing();
+            CronScheduleBuilder scheduleBuilder;
+            try {
+                scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression()).withMisfireHandlingInstructionDoNothing();
+            } catch (Exception e) {
+                throw new RRException("cron表达式错误");
+            }
 
             //按新的cronExpression表达式构建一个新的trigger
             CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(scheduleJob.getJobId())).withSchedule(scheduleBuilder).build();
@@ -83,7 +87,7 @@ public class ScheduleUtils {
     /**
      * 更新定时任务
      *
-     * @param scheduler scheduler
+     * @param scheduler   scheduler
      * @param scheduleJob scheduleJob
      */
     public static void updateScheduleJob(Scheduler scheduler, ScheduleJobEntity scheduleJob) {
@@ -91,9 +95,12 @@ public class ScheduleUtils {
             TriggerKey triggerKey = getTriggerKey(scheduleJob.getJobId());
 
             //表达式调度构建器
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
-                    .withMisfireHandlingInstructionDoNothing();
-
+            CronScheduleBuilder scheduleBuilder;
+            try {
+                scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression()).withMisfireHandlingInstructionDoNothing();
+            } catch (Exception e) {
+                throw new RRException("cron表达式错误");
+            }
             CronTrigger trigger = getCronTrigger(scheduler, scheduleJob.getJobId());
 
             //按新的cronExpression表达式重新构建trigger
@@ -117,7 +124,7 @@ public class ScheduleUtils {
     /**
      * 立即执行任务
      *
-     * @param scheduler scheduler
+     * @param scheduler   scheduler
      * @param scheduleJob scheduleJob
      */
     public static void run(Scheduler scheduler, ScheduleJobEntity scheduleJob) {
@@ -136,7 +143,7 @@ public class ScheduleUtils {
      * 暂停任务
      *
      * @param scheduler scheduler
-     * @param jobId jobId
+     * @param jobId     jobId
      */
     public static void pauseJob(Scheduler scheduler, Long jobId) {
         try {
@@ -150,7 +157,7 @@ public class ScheduleUtils {
      * 恢复任务
      *
      * @param scheduler scheduler
-     * @param jobId jobId
+     * @param jobId     jobId
      */
     public static void resumeJob(Scheduler scheduler, Long jobId) {
         try {
@@ -164,7 +171,7 @@ public class ScheduleUtils {
      * 删除定时任务
      *
      * @param scheduler scheduler
-     * @param jobId jobId
+     * @param jobId     jobId
      */
     public static void deleteScheduleJob(Scheduler scheduler, Long jobId) {
         try {

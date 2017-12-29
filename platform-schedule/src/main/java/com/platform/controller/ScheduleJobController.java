@@ -66,7 +66,9 @@ public class ScheduleJobController {
     public R save(@RequestBody ScheduleJobEntity scheduleJob) {
         ValidatorUtils.validateEntity(scheduleJob);
 
-        return scheduleJobService.save(scheduleJob);
+        scheduleJobService.save(scheduleJob);
+
+        return R.ok();
     }
 
     /**
@@ -78,7 +80,9 @@ public class ScheduleJobController {
     public R update(@RequestBody ScheduleJobEntity scheduleJob) {
         ValidatorUtils.validateEntity(scheduleJob);
 
-        return scheduleJobService.update(scheduleJob);
+        scheduleJobService.update(scheduleJob);
+
+        return R.ok();
     }
 
     /**

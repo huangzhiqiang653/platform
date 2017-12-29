@@ -1,7 +1,6 @@
 package com.platform.service;
 
 import com.platform.entity.ScheduleJobEntity;
-import com.platform.utils.R;
 
 import java.util.List;
 import java.util.Map;
@@ -43,14 +42,14 @@ public interface ScheduleJobService {
      *
      * @param scheduleJob scheduleJob
      */
-    R save(ScheduleJobEntity scheduleJob);
+    void save(ScheduleJobEntity scheduleJob);
 
     /**
      * 更新定时任务
      *
      * @param scheduleJob scheduleJob
      */
-    R update(ScheduleJobEntity scheduleJob);
+    void update(ScheduleJobEntity scheduleJob);
 
     /**
      * 批量删除定时任务

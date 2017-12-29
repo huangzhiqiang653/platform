@@ -43,7 +43,7 @@
         <i-col span="12">
             <Card>
                 <p slot="title">{{title}}</p>
-                <i-form ref="formValidate" :model="schedule" :rules="ruleValidate" :label-width="80">
+                <i-form ref="formValidate" :model="schedule" :rules="ruleValidate" :label-width="100">
                     <Form-item label="bean名称" prop="beanName">
                         <i-input v-model="schedule.beanName" placeholder="spring bean名称，如：testTask"/>
                     </Form-item>

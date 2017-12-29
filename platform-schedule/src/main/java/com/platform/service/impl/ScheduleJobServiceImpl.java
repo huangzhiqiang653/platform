@@ -4,10 +4,9 @@ import com.platform.dao.ScheduleJobDao;
 import com.platform.entity.ScheduleJobEntity;
 import com.platform.service.ScheduleJobService;
 import com.platform.utils.Constant.ScheduleStatus;
-import com.platform.utils.R;
+import com.platform.utils.RRException;
 import com.platform.utils.ScheduleUtils;
 import com.platform.utils.SpringContextUtils;
-import org.apache.log4j.Logger;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ import java.util.Map;
  */
 @Service("scheduleJobService")
 public class ScheduleJobServiceImpl implements ScheduleJobService {
-    private static final Logger logger = Logger.getLogger(ScheduleJobServiceImpl.class);
     @Autowired
     private Scheduler scheduler;
     @Autowired
@@ -70,31 +68,28 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
 
     @Override
     @Transactional
-    public R save(ScheduleJobEntity scheduleJob) {
+    public void save(ScheduleJobEntity scheduleJob) {
         Object o = null;
         try {
             o = SpringContextUtils.getBean(scheduleJob.getBeanName());
         } catch (Exception e) {
-            logger.error("任务类没找到");
-            return R.error("任务类没找到");
+            throw new RRException("任务类没找到");
         }
         scheduleJob.setCreateTime(new Date());
         scheduleJob.setStatus(ScheduleStatus.NORMAL.getValue());
         schedulerJobDao.save(scheduleJob);
 
         ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
-        return R.ok();
     }
 
     @Override
     @Transactional
-    public R update(ScheduleJobEntity scheduleJob) {
+    public void update(ScheduleJobEntity scheduleJob) {
         Object o = null;
         try {
             o = SpringContextUtils.getBean(scheduleJob.getBeanName());
         } catch (Exception e) {
-            logger.error("任务类没找到");
-            return R.error("任务类没找到");
+            throw new RRException("任务类没找到");
         }
         List<String> list = new ArrayList<>();
 
@@ -105,14 +100,12 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
             list.add(methods[i].getName());
         }
         if (!list.contains(scheduleJob.getMethodName())) {
-            logger.error("任务类没找到该方法：" + scheduleJob.getMethodName());
-            return R.error("任务类没找到该方法：" + scheduleJob.getMethodName());
+            throw new RRException("任务类没找到该方法：" + scheduleJob.getMethodName());
         }
 
         ScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
 
         schedulerJobDao.update(scheduleJob);
-        return R.ok();
     }
 
     @Override
