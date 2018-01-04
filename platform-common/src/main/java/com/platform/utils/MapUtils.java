@@ -243,20 +243,6 @@ public class MapUtils {
     }
 
     /**
-     * 将map中指定的key的value值进行处理
-     *
-     * @param key
-     * @param map
-     * @param helper
-     */
-    public static void convertMapValuePattern(String key, Map<String, Object> map, DealMapValueHelper helper) {
-        Assert.hasText(key);
-        Assert.notNull(map);
-        Assert.notNull(helper);
-        helper.dealValue(key, map);
-    }
-
-    /**
      * 将javabean实体类转为map类型，然后返回一个map类型的值
      *
      * @return

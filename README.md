@@ -1,4 +1,5 @@
     致力打造通用综合管理平台
+    代码自动生成工具 git：https://gitee.com/fuyang_lipengjun/platform-generator
 
     技术选型
     1、后端使用技术

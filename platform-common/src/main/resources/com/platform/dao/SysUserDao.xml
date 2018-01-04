@@ -98,7 +98,6 @@
         update sys_user
         <set>
             <if test="userName != null">`user_name` = #{userName},</if>
-            <if test="passWord != null">`pass_word` = #{passWord},</if>
             <if test="email != null">`email` = #{email},</if>
             <if test="mobile != null">`mobile` = #{mobile},</if>
             <if test="qq != null">`qq` = #{qq},</if>

@@ -10,6 +10,14 @@
         <if test="confKey != null and confKey.trim() != ''">
             and `conf_key` like concat('%',#{confKey},'%')
         </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
         <if test="offset != null and limit != null">
             limit #{offset}, #{limit}
         </if>

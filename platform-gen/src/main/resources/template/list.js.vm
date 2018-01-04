@@ -1,7 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
         url: '../${pathName}/list',
-        datatype: "json",
         colModel: [
 #foreach($column in $columns)
 #if($column.columnName == $pk.columnName)
@@ -9,30 +8,7 @@ $(function () {
 #else
 			{label: '${column.comments}', name: '${column.attrname}', index: '${column.columnName}', width: 80}#if($velocityCount != $columns.size()),
 #end#end#end
-],
-		viewrecords: true,
-        height: 385,
-        rowNum: 10,
-        rowList: [10, 30, 50],
-        rownumbers: true,
-        rownumWidth: 25,
-        autowidth: true,
-        multiselect: true,
-        pager: "#jqGridPager",
-        jsonReader: {
-            root: "page.list",
-            page: "page.currPage",
-            total: "page.totalPage",
-            records: "page.totalCount"
-        },
-        prmNames: {
-            page: "page",
-            rows: "limit",
-            order: "order"
-        },
-        gridComplete: function () {
-            $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
-        }
+]
     });
 });
 
@@ -61,7 +37,7 @@ let vm = new Vue({
 			vm.${classname} = {};
 		},
 		update: function (event) {
-            let $pk.attrname = getSelectedRow();
+            let $pk.attrname = getSelectedRow("#jqGrid");
 			if ($pk.attrname == null) {
 				return;
 			}
@@ -85,7 +61,7 @@ let vm = new Vue({
 			});
 		},
 		del: function (event) {
-            let ${pk.attrname}s = getSelectedRows();
+            let ${pk.attrname}s = getSelectedRows("#jqGrid");
 			if (${pk.attrname}s == null){
 				return;
 			}

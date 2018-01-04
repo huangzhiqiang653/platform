@@ -8,7 +8,15 @@
 	</select>
 
 	<select id="queryList" resultType="com.platform.entity.SysOssEntity">
-		select * from sys_oss order by id desc
+		select * from sys_oss
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>

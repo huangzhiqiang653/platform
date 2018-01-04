@@ -13,7 +13,14 @@
 				and job_id = #{jobId}
 			</if>
 		</where>
-		order by log_id desc 
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by log_id desc
+			</otherwise>
+		</choose>
 		<if test="offset != null and limit != null ">
 		limit #{offset}, #{limit}
 		</if>

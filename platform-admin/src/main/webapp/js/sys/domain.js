@@ -1,7 +1,6 @@
 $(function () {
-    $("#jqGrid").jqGrid({
+    $("#jqGrid").Grid({
         url: '../sys/domain/list',
-        datatype: "json",
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
             {label: '域编码', name: 'domainCode', index: 'domain_code', width: 80},
@@ -25,30 +24,7 @@ $(function () {
                 }
                 return '<i class="' + value + ' fa-lg">';
             }
-            }],
-        viewrecords: true,
-        height: 385,
-        rowNum: 10,
-        rowList: [10, 30, 50],
-        rownumbers: true,
-        rownumWidth: 25,
-        autowidth: true,
-        multiselect: true,
-        pager: "#jqGridPager",
-        jsonReader: {
-            root: "page.list",
-            page: "page.currPage",
-            total: "page.totalPage",
-            records: "page.totalCount"
-        },
-        prmNames: {
-            page: "page",
-            rows: "limit",
-            order: "order"
-        },
-        gridComplete: function () {
-            $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
-        }
+            }]
     });
 });
 
@@ -77,7 +53,7 @@ let vm = new Vue({
             vm.domain = {};
         },
         update: function (event) {
-            let id = getSelectedRow();
+            let id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -101,7 +77,7 @@ let vm = new Vue({
             });
         },
         del: function (event) {
-            let ids = getSelectedRows();
+            let ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }

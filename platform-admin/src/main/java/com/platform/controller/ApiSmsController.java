@@ -47,7 +47,7 @@ public class ApiSmsController {
         SysSmsLogEntity smsLog = new SysSmsLogEntity();
         String validIP = RequestUtil.getIpAddrByRequest(request);
         if (VALID_IP.indexOf(validIP) < 0) {
-            throw new RRException("非法IP请求！");
+            throw new RRException(validIP + "：非法IP请求！");
         }
         smsLog.setMobile(params.get("mobile"));
         smsLog.setContent(params.get("content"));

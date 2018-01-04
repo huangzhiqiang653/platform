@@ -1,11 +1,10 @@
 $(function () {
-    $("#jqGrid").jqGrid({
+    $("#jqGrid").Grid({
         url: '../sys/user/list',
-        datatype: "json",
         colModel: [
             {label: '用户ID', name: 'userId', index: "user_id", key: true, hidden: true},
-            {label: '用户名', name: 'userName', width: 75},
-            {label: '所属部门', name: 'deptName', width: 75},
+            {label: '用户名', name: 'userName', index: "user_id", width: 75},
+            {label: '所属部门', name: 'deptName', index: "dept_id", width: 75},
             {label: '邮箱', name: 'email', width: 90},
             {label: '手机号', name: 'mobile', width: 100},
             {
@@ -19,31 +18,7 @@ $(function () {
                 label: '创建时间', name: 'createTime', index: "create_time", width: 80, formatter: function (value) {
                 return transDate(value);
             }
-            }],
-        viewrecords: true,
-        height: 385,
-        rowNum: 10,
-        rowList: [10, 30, 50],
-        rownumbers: true,
-        rownumWidth: 25,
-        autowidth: true,
-        multiselect: true,
-        pager: "#jqGridPager",
-        jsonReader: {
-            root: "page.list",
-            page: "page.currPage",
-            total: "page.totalPage",
-            records: "page.totalCount"
-        },
-        prmNames: {
-            page: "page",
-            rows: "limit",
-            order: "order"
-        },
-        gridComplete: function () {
-            //隐藏grid底部滚动条
-            $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
-        }
+            }]
     });
 });
 
@@ -120,7 +95,7 @@ var vm = new Vue({
             });
         },
         update: function () {
-            var userId = getSelectedRow();
+            var userId = getSelectedRow("#jqGrid");
             if (userId == null) {
                 return;
             }
@@ -141,7 +116,7 @@ var vm = new Vue({
 
         },
         del: function () {
-            var userIds = getSelectedRows();
+            var userIds = getSelectedRows("#jqGrid");
             if (userIds == null) {
                 return;
             }
