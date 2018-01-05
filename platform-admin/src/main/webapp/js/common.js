@@ -369,6 +369,9 @@ Ajax = function () {
             type: opt.type,
             cache: opt.cache,
             success: function (data) {
+                //关闭遮罩
+                dialogLoading(false);
+
                 if (typeof data == 'string' && data.indexOf("exception") > 0 || typeof data.code != 'undefined' && data.code != '0') {
                     var result = {code: null};
                     if (typeof data == 'string') {
@@ -394,13 +397,12 @@ Ajax = function () {
                 if (typeof(opt.successCallback) != 'undefined') {
                     opt.successCallback(data);
                 }
-                //关闭遮罩
-                dialogLoading(false);
             },
             error: function () {
-                layer.alert("此页面发生未知异常,请联系管理员", {icon: 5});
                 //关闭遮罩
                 dialogLoading(false);
+
+                layer.alert("此页面发生未知异常,请联系管理员", {icon: 5});
             }
         });
     }
