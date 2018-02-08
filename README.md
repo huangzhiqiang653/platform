@@ -88,7 +88,7 @@
 		
 		
     后台管理项目演示
-    演示地址：http://47.100.0.48
+    演示地址：http://fly2you.cn/admin
     账号密码：admin/admin
     
     如何交流、反馈、参与贡献？
@@ -105,5 +105,7 @@
 ![](http://7xqbwh.dl1.z0.glb.clouddn.com/20171124/00384448918539.png "多系统切换")
 ### 角色授权
 ![](http://7xqbwh.dl1.z0.glb.clouddn.com/20171124/0040593234231c.png "角色授权")
+### 短信发送
+![](http://7xqbwh.dl1.z0.glb.clouddn.com/20180208/15333527921893.png "短信发送")
 ### 捐赠
 ![](http://7xqbwh.dl1.z0.glb.clouddn.com/20171124/0041155051171d.png "捐赠")
