@@ -14,20 +14,20 @@ import java.util.Date;
  * @date 2017年11月18日 下午13:13:23
  */
 public class DateUtils {
-    private static final Logger logger = Logger.getLogger(DateUtils.class);
+    private static Logger logger = Logger.getLogger(DateUtils.class);
 
     /**
      * 时间格式(yyyy-MM-dd)
      */
-    public final static String DATE_PATTERN = "yyyy-MM-dd";
+    public static final String DATE_PATTERN = "yyyy-MM-dd";
     /**
      * 无分隔符日期格式 "yyyyMMddHHmmssSSS"
      */
-    public static String DATE_TIME_PATTERN_YYYY_MM_DD_HH_MM_SS_SSS = "yyyyMMddHHmmssSSS";
+    public static final String DATE_TIME_PATTERN_YYYY_MM_DD_HH_MM_SS_SSS = "yyyyMMddHHmmssSSS";
     /**
      * 时间格式(yyyy-MM-dd HH:mm:ss)
      */
-    public final static String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 日期转换格式数组
