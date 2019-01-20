@@ -12,11 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service("sysMenuService")
@@ -83,7 +79,6 @@ public class SysMenuServiceImpl implements SysMenuService {
     public void save(SysMenuEntity menu) {
         String parentId = menu.getParentId();
         String maxId = sysMenuDao.queryMaxIdByParentId(parentId);
-
         menu.setMenuId(StringUtils.addOne(parentId, maxId));
         menu.setCreateUser(ShiroUtils.getUserId());
         menu.setCreateTime(new Date());

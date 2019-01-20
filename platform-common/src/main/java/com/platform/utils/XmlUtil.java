@@ -105,16 +105,18 @@ public class XmlUtil {
      * @return
      */
     public static Map<String, Object> elementToMap(Element element, Map<String, Object> map) {
-        if (element == null || map == null)
+        if (element == null || map == null) {
             return null;
+        }
         List children = element.elements();
         if (children != null && children.size() > 0) {
             for (int i = 0; i < children.size(); i++) {
                 Element child = (Element) children.get(i);
-                if (child.elements() != null && child.elements().size() > 0)
+                if (child.elements() != null && child.elements().size() > 0) {
                     elementToMap(child, map);
-                else
+                } else {
                     map.put(child.getName(), child.getTextTrim());
+                }
             }
         }
         return map;

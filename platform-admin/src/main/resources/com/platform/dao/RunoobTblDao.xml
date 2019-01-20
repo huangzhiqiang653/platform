@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.RunoobTblDao">
+
+    <resultMap type="com.platform.entity.RunoobTblEntity" id="runoobTblMap">
+        <result property="id" column="id"/>
+        <result property="runoobTitle" column="runoob_title"/>
+        <result property="runoobAuthor" column="runoob_author"/>
+        <result property="submissionDate" column="submission_date"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.platform.entity.RunoobTblEntity">
+		select
+			`id`,
+			`runoob_title`,
+			`runoob_author`,
+			`submission_date`
+		from runoob_tbl
+		where id = #{id}
+	</select>
+
+	<select id="queryList" resultType="com.platform.entity.RunoobTblEntity">
+		select
+    		`id`,
+    		`runoob_title`,
+    		`runoob_author`,
+    		`submission_date`
+		from runoob_tbl
+		WHERE 1=1
+		<if test="name != null and name.trim() != ''">
+			AND name LIKE concat('%',#{name},'%')
+		</if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from runoob_tbl
+		WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+	</select>
+	 
+	<insert id="save" parameterType="com.platform.entity.RunoobTblEntity">
+		insert into runoob_tbl(
+			`id`,
+			`runoob_title`,
+			`runoob_author`,
+			`submission_date`)
+		values(
+			#{id},
+			#{runoobTitle},
+			#{runoobAuthor},
+			#{submissionDate})
+	</insert>
+	 
+	<update id="update" parameterType="com.platform.entity.RunoobTblEntity">
+		update runoob_tbl 
+		<set>
+			<if test="runoobTitle != null">`runoob_title` = #{runoobTitle}, </if>
+			<if test="runoobAuthor != null">`runoob_author` = #{runoobAuthor}, </if>
+			<if test="submissionDate != null">`submission_date` = #{submissionDate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from runoob_tbl where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from runoob_tbl where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -39,7 +39,8 @@ var vm = new Vue({
             if (tableNames == null) {
                 return;
             }
-            location.href = "../sys/generator/code?tables=" + JSON.stringify(tableNames);
+            debugger;
+            location.href = "../sys/generator/code?tables=" + encodeURI(JSON.stringify(tableNames));
         }
     }
 });

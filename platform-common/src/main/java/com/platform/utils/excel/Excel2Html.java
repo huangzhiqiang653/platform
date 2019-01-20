@@ -382,7 +382,9 @@ public class Excel2Html {
     static String[] borderStyles = {"solid ", "solid ", "solid ", "solid ", "solid ", "solid ", "solid ", "solid ", "solid ", "solid", "solid", "solid", "solid", "solid"};
 
     private static String getBorderStyle(HSSFPalette palette, int b, short s, short t) {
-        if (s == 0) return bordesr[b] + borderStyles[s] + "#d0d7e5 1px;";
+        if (s == 0) {
+            return bordesr[b] + borderStyles[s] + "#d0d7e5 1px;";
+        }
         ;
         String borderColorStr = convertToStardColor(palette.getColor(t));
         borderColorStr = borderColorStr == null || borderColorStr.length() < 1 ? "#000000" : borderColorStr;
@@ -390,7 +392,9 @@ public class Excel2Html {
     }
 
     private static String getBorderStyle(int b, short s, XSSFColor xc) {
-        if (s == 0) return bordesr[b] + borderStyles[s] + "#d0d7e5 1px;";
+        if (s == 0) {
+            return bordesr[b] + borderStyles[s] + "#d0d7e5 1px;";
+        }
         ;
         if (xc != null && !"".equals(xc)) {
             String borderColorStr = xc.getARGBHex();//t.getARGBHex();
@@ -414,10 +418,12 @@ public class Excel2Html {
             ioe.printStackTrace();
         } finally {
             try {
-                if (bw != null)
+                if (bw != null) {
                     bw.close();
-                if (os != null)
+                }
+                if (os != null) {
                     os.close();
+                }
             } catch (IOException ie) {
                 ie.printStackTrace();
             }

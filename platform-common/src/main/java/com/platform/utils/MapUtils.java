@@ -22,41 +22,53 @@ import java.util.Set;
 public class MapUtils {
 
     public static String getString(String key, Map<String, Object> map) {
-        if (map == null || key == null)
+        if (map == null || key == null) {
             throw new IllegalArgumentException();
-        if (!map.containsKey(key))
+        }
+        if (!map.containsKey(key)) {
             return null;
+        }
         Object value = map.get(key);
-        if (value == null)
+        if (value == null) {
             return null;
+        }
         return value.toString();
     }
 
     public static Integer getInteger(String key, Map<String, Object> map) {
-        if (map == null || key == null)
+        if (map == null || key == null) {
             throw new IllegalArgumentException();
-        if (!map.containsKey(key))
+        }
+        if (!map.containsKey(key)) {
             return null;
+        }
         Object value = map.get(key);
-        if (value == null)
+        if (value == null) {
             return null;
-        if (value instanceof Integer)
+        }
+        if (value instanceof Integer) {
             return (Integer) value;
-        if (value instanceof String)
+        }
+        if (value instanceof String) {
             return Integer.valueOf((String) value);
+        }
         //Date 不支持变成为date类型
-        if (value instanceof Date)
+        if (value instanceof Date) {
             throw new ClassCastException();
-        if (value instanceof Number)
+        }
+        if (value instanceof Number) {
             return ((Number) value).intValue();
+        }
         throw new ClassCastException();
     }
 
     public static Long getLong(String key, Map<String, Object> map) {
-        if (map == null || key == null)
+        if (map == null || key == null) {
             throw new IllegalArgumentException();
-        if (!map.containsKey(key))
+        }
+        if (!map.containsKey(key)) {
             return null;
+        }
         Object value = map.get(key);
         if (value == null)
             return null;
@@ -238,8 +250,9 @@ public class MapUtils {
     public static void putIfValueNotEmpty(Map<String, Object> map, String key, String value) {
         Assert.notNull(map);
         Assert.hasText(key);
-        if (!StringUtils.isNullOrEmpty(value))
+        if (!StringUtils.isNullOrEmpty(value)) {
             map.put(key, value);
+        }
     }
 
     /**

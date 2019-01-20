@@ -1,14 +1,11 @@
 $(function () {
     $("#jqGrid").Grid({
-        url: '../${pathName}/list',
+        url: '../runoobtbl/list',
         colModel: [
-#foreach($column in $columns)
-#if($column.columnName == $pk.columnName)
-			{label: '${column.attrname}', name: '${column.attrname}', index: '${column.columnName}', key: true, hidden: true},
-#else
-			{label: '${column.comments}', name: '${column.attrname}', index: '${column.columnName}', width: 80}#if($velocityCount != $columns.size()),
-#end#end#end
-]
+			{label: 'id', name: 'id', index: 'id', key: true, hidden: true},
+			{label: '标题', name: 'runoobTitle', index: 'runoob_title', width: 80},
+			{label: '作者', name: 'runoobAuthor', index: 'runoob_author', width: 80},
+			{label: '时间', name: 'submissionDate', index: 'submission_date', width: 80}]
     });
 });
 
@@ -17,7 +14,7 @@ let vm = new Vue({
 	data: {
         showList: true,
         title: null,
-		${classname}: {},
+		runoobTbl: {},
 		ruleValidate: {
 			name: [
 				{required: true, message: '名称不能为空', trigger: 'blur'}
@@ -34,23 +31,23 @@ let vm = new Vue({
 		add: function () {
 			vm.showList = false;
 			vm.title = "新增";
-			vm.${classname} = {};
+			vm.runoobTbl = {};
 		},
 		update: function (event) {
-            let $pk.attrname = getSelectedRow("#jqGrid");
-			if ($pk.attrname == null) {
+            let id = getSelectedRow("#jqGrid");
+			if (id == null) {
 				return;
 			}
 			vm.showList = false;
             vm.title = "修改";
 
-            vm.getInfo(${pk.attrname})
+            vm.getInfo(id)
 		},
 		saveOrUpdate: function (event) {
-            let url = vm.${classname}.${pk.attrname} == null ? "../${pathName}/save" : "../${pathName}/update";
+            let url = vm.runoobTbl.id == null ? "../runoobtbl/save" : "../runoobtbl/update";
             Ajax.request({
 			    url: url,
-                params: JSON.stringify(vm.${classname}),
+                params: JSON.stringify(vm.runoobTbl),
                 type: "POST",
 			    contentType: "application/json",
                 successCallback: function (r) {
@@ -61,15 +58,15 @@ let vm = new Vue({
 			});
 		},
 		del: function (event) {
-            let ${pk.attrname}s = getSelectedRows("#jqGrid");
-			if (${pk.attrname}s == null){
+            let ids = getSelectedRows("#jqGrid");
+			if (ids == null){
 				return;
 			}
 
 			confirm('确定要删除选中的记录？', function () {
                 Ajax.request({
-				    url: "../${pathName}/delete",
-                    params: JSON.stringify(${pk.attrname}s),
+				    url: "../runoobtbl/delete",
+                    params: JSON.stringify(ids),
                     type: "POST",
 				    contentType: "application/json",
                     successCallback: function () {
@@ -80,12 +77,12 @@ let vm = new Vue({
 				});
 			});
 		},
-		getInfo: function(${pk.attrname}){
+		getInfo: function(id){
             Ajax.request({
-                url: "../${pathName}/info/"+${pk.attrname},
+                url: "../runoobtbl/info/"+id,
                 async: true,
                 successCallback: function (r) {
-                    vm.${classname} = r.${classname};
+                    vm.runoobTbl = r.runoobTbl;
                 }
             });
 		},

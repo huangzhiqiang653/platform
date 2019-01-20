@@ -1,7 +1,9 @@
 package com.platform.controller;
 
 import com.platform.annotation.SysLog;
+import com.platform.entity.SysDomainEntity;
 import com.platform.entity.SysMenuEntity;
+import com.platform.service.SysDomainService;
 import com.platform.service.SysMenuService;
 import com.platform.utils.*;
 import com.platform.utils.Constant.MenuType;
@@ -23,8 +25,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/menu")
 public class SysMenuController extends AbstractController {
+    /**
+     * 根菜单主键
+     */
+    private final static String MENU_ROOT_ID = "0";
     @Autowired
     private SysMenuService sysMenuService;
+    @Autowired
+    private SysDomainService domainService;
 
     /**
      * 所有菜单列表
@@ -83,7 +91,7 @@ public class SysMenuController extends AbstractController {
 
         //只有超级管理员，才能查看所有管理员列表
         if (Constant.SUPER_ADMIN.equals(getUserId())) {
-            menuList = sysMenuService.queryList(new HashMap<String, Object>());
+            menuList = sysMenuService.queryList(new HashMap<>(0));
         } else {
             menuList = sysMenuService.queryUserList(getUserId());
         }
@@ -148,8 +156,17 @@ public class SysMenuController extends AbstractController {
     @RequestMapping("/user")
     public R user(@RequestParam(required = false) String domainId) {
         if (StringUtils.isEmpty(domainId)) {
-            //默认综合管理系统
-            domainId = Constant.DOMAIN_ID;
+            //判断当前用户是否就一个domainid
+            String userId = ShiroUtils.getUserId();
+            List<SysDomainEntity> list;
+            Map<String, Object> params = new HashMap<>(1);
+            if (Constant.SUPER_ADMIN.equals(userId)) {
+                list = domainService.queryList(params);
+            } else {
+                params.put("userId", userId);
+                list = domainService.queryList(params);
+            }
+            domainId = list.get(0).getId();
         }
         List<SysMenuEntity> menuList = sysMenuService.getUserMenuList(getUserId(), domainId);
 
@@ -177,7 +194,7 @@ public class SysMenuController extends AbstractController {
 
         //上级菜单类型
         int parentType = MenuType.CATALOG.getValue();
-        if (StringUtils.isNotEmpty(menu.getParentId()) && !"0".equals(menu.getParentId())) {
+        if (StringUtils.isNotEmpty(menu.getParentId()) && !MENU_ROOT_ID.equals(menu.getParentId())) {
             SysMenuEntity parentMenu = sysMenuService.queryObject(menu.getParentId());
             parentType = parentMenu.getType();
         }
